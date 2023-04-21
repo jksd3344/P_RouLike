@@ -1,0 +1,19 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{2A862EAD-4C66-F046-565E-A2A118BCBE2B}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "P_RouLike",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "GameplayAbilities",
+			"Enabled": true
+		}
+	]
+}
