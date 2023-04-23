@@ -3,19 +3,16 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "RouLikeTableBase.h"
 #include "Abilities/GameplayAbility.h"
-#include "Engine/DataTable.h"
 #include "CharacterSkillTbale.generated.h"
 
 USTRUCT()
-struct FCharacterSkillTable:public FTableRowBase
+struct FCharacterSkillTable:public FRouLikeTableBase
 {
 	GENERATED_BODY()
 
 	FCharacterSkillTable();
-
-	UPROPERTY(EditDefaultsOnly, Category = "CharacterSkill")
-	int32 ID;
 
 	UPROPERTY(EditDefaultsOnly, Category = "CharacterSkill")
 	UTexture2D* Icon;

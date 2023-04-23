@@ -37,6 +37,8 @@ void UAnimNotify_Attack::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceB
 					{
 						/*设置生命周期*/
 						HitCollision->SetLifeSpan(LiftTime);
+						FVector RelativeLocation = HitCollision->GetHitDamage()->GetRelativeLocation();
+						HitCollision->SetHitDamageRelativePosition(RelativeLocation + RelativeOffsetLocation);
 						if (AHitCollisionBox* InBox = Cast<AHitCollisionBox>(HitCollision))
 						{
 							InBox->SetBoxExtent(BoxExtent);

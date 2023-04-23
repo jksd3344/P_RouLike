@@ -1,5 +1,6 @@
 #include "FightComponent.h"
 #include "P_RouLike/GamePlay/Game/P_RouLikeGameState.h"
+#include "P_RouLike/GamePlay/Game/P_RouLikePlayerState.h"
 #include "P_RouLike/GamePlay/Game/Character/Core/RouLikeCharacterBase.h"
 #include "P_RouLike/GamePlay/Game/SkillGAS/Core/GamePlayAbilityCore.h"
 
@@ -33,7 +34,7 @@ void UFightComponent::BeginPlay()
 
 void UFightComponent::RouLikeGameplayAbility(const FName& InKey)
 {
-	if (AP_RouLikeGameState* InGameState = GetWorld()->GetGameState<AP_RouLikeGameState>())
+	if (AP_RouLikePlayerState* InGameState = GetWorld()->GetFirstPlayerController()->GetPlayerState<AP_RouLikePlayerState>())
 	{
 		if (FCharacterSkillTable* InSkillTable = InGameState->GetCharacterSkillTable(InKey,RouLikeCharacterBase->GetID()))
 		{

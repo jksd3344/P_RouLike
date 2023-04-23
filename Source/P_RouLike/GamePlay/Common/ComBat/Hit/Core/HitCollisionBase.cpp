@@ -14,6 +14,14 @@ void AHitCollisionBase::HandleDamage(UPrimitiveComponent* OverlappedComponent, A
 	
 }
 
+void AHitCollisionBase::SetHitDamageRelativePosition(const FVector& InNewPostion)
+{
+	if (UPrimitiveComponent* InHitComponent = GetHitDamage())
+	{
+		InHitComponent->SetRelativeLocation(InNewPostion);
+	}
+}
+
 void AHitCollisionBase::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);

@@ -15,7 +15,22 @@ public:
 	AP_RouLikePlayerController();
 	
 protected:
+	/*拾取物品*/
+	UFUNCTION(Server,Reliable)
+	void PickUpProp();
+	
+	/*购买物品*/
+	UFUNCTION(Server,Reliable)
+	void BuyProp();
 
+	/*售出*/
+	UFUNCTION(Server,Reliable)
+	void Sell(int32 InMoveInventoryID,int32 InItemId);
+
+	/*使用*/
+	UFUNCTION(Server,Reliable)
+	void Use(int32 InMoveInventoryID);
+	
 	// Begin PlayerController interface
 	virtual void PlayerTick(float DeltaTime) override;
 

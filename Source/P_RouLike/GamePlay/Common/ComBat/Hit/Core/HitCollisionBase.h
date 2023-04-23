@@ -24,6 +24,7 @@ public:
 	/*获取子类返回的碰撞盒子*/
 	virtual UPrimitiveComponent* GetHitDamage(){return NULL;};
 
+	void SetHitDamageRelativePosition(const FVector &InNewPostion);
 protected:
 	virtual void Tick(float DeltaSeconds) override;
 	virtual void BeginPlay() override;

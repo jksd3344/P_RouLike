@@ -48,6 +48,10 @@ protected:
 	//如果为false 代表只能服务器生成 如果为true 服务器客户端都可以生成 ,可以在客户端查看效果
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "General configuration")
 	bool bCanCreateOnClient;
+
+	//碰撞体的相对位置
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "General configuration")
+	FVector RelativeOffsetLocation;
 public:
 	UPROPERTY()
 	bool bHitBox;
