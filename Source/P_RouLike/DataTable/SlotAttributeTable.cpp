@@ -7,6 +7,6 @@ FSlotAttributeValue::FSlotAttributeValue()
 }
 
 FSlotAttributeTable::FSlotAttributeTable()
+	:AttributeType(ESlotPropType::SLOT_ALL)
 {
 }
-

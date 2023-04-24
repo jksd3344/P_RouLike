@@ -70,7 +70,7 @@ void UGamePlayAbilityCore::OnDamageGameplayEvent(FGameplayTag InGameplayTag, FGa
 
 		/*这个是用来注册目标的*/
 		FGameplayAbilityTargetData_ActorArray* NewTargetData_ActorArray = new FGameplayAbilityTargetData_ActorArray();
-		NewTargetData_ActorArray->TargetActorArray.Add(const_cast<AActor*>(Payload.Target));
+		NewTargetData_ActorArray->TargetActorArray.Add(const_cast<AActor*>(Payload.Target.Get()));
 		GameplayEffectSpec.TargetHandleData.Add(NewTargetData_ActorArray);
 
 

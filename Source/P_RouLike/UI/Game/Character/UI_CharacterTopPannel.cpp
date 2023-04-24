@@ -1,15 +1,7 @@
-#include "UI_CharacterBarWidget.h"
-
-#include "Components/ProgressBar.h"
+#include "UI_CharacterTopPannel.h"
 
 
-
-void UUI_CharacterBarWidget::SetHealth(float InPercentage)
-{
-	HealthBar->SetPercent(InPercentage);
-}
-
-void UUI_CharacterBarWidget::NativeConstruct()
+void UUI_CharacterTopPannel::NativeConstruct()
 {
 	Super::NativeConstruct();
 	

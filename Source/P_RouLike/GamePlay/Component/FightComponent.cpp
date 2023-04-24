@@ -1,7 +1,6 @@
 #include "FightComponent.h"
-#include "P_RouLike/GamePlay/Game/P_RouLikeGameState.h"
-#include "P_RouLike/GamePlay/Game/P_RouLikePlayerState.h"
 #include "P_RouLike/GamePlay/Game/Character/Core/RouLikeCharacterBase.h"
+#include "P_RouLike/GamePlay/Game/GameWorld/P_RouLikePlayerState.h"
 #include "P_RouLike/GamePlay/Game/SkillGAS/Core/GamePlayAbilityCore.h"
 
 

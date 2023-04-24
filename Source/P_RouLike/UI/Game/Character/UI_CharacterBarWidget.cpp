@@ -1,7 +1,5 @@
 #include "UI_CharacterBarWidget.h"
-
 #include "Components/ProgressBar.h"
-
 
 
 void UUI_CharacterBarWidget::SetHealth(float InPercentage)

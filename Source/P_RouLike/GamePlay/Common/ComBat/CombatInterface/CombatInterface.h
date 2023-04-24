@@ -22,11 +22,8 @@ class P_ROULIKE_API ICombatInterface
 
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
-	UFUNCTION(BlueprintCallable, Category="Combat")
 	virtual void AnimSignal(int32 InSignal) {}
-	UFUNCTION(BlueprintCallable, Category="Combat")
 	virtual void CombatReset(){}
-	UFUNCTION(BlueprintCallable, Category = "Combat")
 	virtual void ComboAttack(const FName &InKey) {}
 
 	virtual struct FRouLikeCombat* GetCombatInfo() { return NULL; }

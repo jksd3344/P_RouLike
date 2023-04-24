@@ -3,18 +3,16 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/GameStateBase.h"
-#include "RoulikePropBase.generated.h"
+#include "Core/RoulikePropBase.h"
+#include "RoulikeWenpon.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class P_ROULIKE_API ARoulikePropBase : public AActor
+class P_ROULIKE_API ARoulikeWenpon : public ARoulikePropBase
 {
 	GENERATED_BODY()
 public:
-	ARoulikePropBase();
-
-	
+	ARoulikeWenpon();
 };

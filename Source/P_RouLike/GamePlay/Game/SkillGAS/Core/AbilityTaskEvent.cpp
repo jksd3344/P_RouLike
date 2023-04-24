@@ -33,7 +33,7 @@ void UAbilityTaskEvent::Activate()
 		return;
 	}
 
-	if (AbilitySystemComponent)
+	if (AbilitySystemComponent.IsValid())
 	{
 		const FGameplayAbilityActorInfo* ActorInfo = Ability->GetCurrentActorInfo();
 		UAnimInstance* AnimInstance = ActorInfo->GetAnimInstance();
@@ -60,7 +60,7 @@ void UAbilityTaskEvent::OnDamageGameplayEvent(FGameplayTag InGameplayTag, const 
 
 void UAbilityTaskEvent::OnDestroy(bool bInOwnerFinished)
 {
-	if (AbilitySystemComponent)
+	if (AbilitySystemComponent.IsValid())
 	{
 		AbilitySystemComponent->RemoveGameplayEventTagContainerDelegate(EventTags,DamageEventHandle);
 	}
