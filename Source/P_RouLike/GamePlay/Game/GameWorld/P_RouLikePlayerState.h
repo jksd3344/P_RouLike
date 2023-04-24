@@ -86,9 +86,9 @@ protected:
 		{
 			if (InTables->Num())
 			{
-				if (auto InTable = InTables->FindByPredicate([&](T* MyTable){return MyTable->ID==InTableID;}))
+				if (auto InTableTmp = InTables->FindByPredicate([&](T* MyTable){return MyTable->ID==InTableID;}))
 				{
-					return *(InTable);
+					return *(InTableTmp);
 				}
 			}
 		}
