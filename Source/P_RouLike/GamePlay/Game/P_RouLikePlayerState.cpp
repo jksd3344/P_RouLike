@@ -20,15 +20,15 @@ void AP_RouLikePlayerState::Tick(float DeltaSeconds)
 	Super::Tick(DeltaSeconds);
 }
 
-void AP_RouLikePlayerState::InitializeInventorySlot(TMap<int32,FSlotData> InventorySlots)
+void AP_RouLikePlayerState::InitializeInventorySlot(TMap<int32,FSlotData> InInventorySlots)
 {
 	int32 InSlotID = FMath::RandRange(0,999999);
-	if (!InventorySlots.Contains(InSlotID))
+	if (!InInventorySlots.Contains(InSlotID))
 	{
-		InventorySlots.Add(InSlotID,FSlotData());
+		InInventorySlots.Add(InSlotID,FSlotData());
 	}else
 	{
-		InitializeInventorySlot(InventorySlots);
+		InitializeInventorySlot(InInventorySlots);
 	}
 }
 
@@ -112,7 +112,7 @@ bool AP_RouLikePlayerState::AddSlotToInventory(int32 InSlotID)
 
 void AP_RouLikePlayerState::DeleteSlotToInventory(int32 InSlotID)
 {
-	if (FSlotData* InSlotData = GetInventorySlotData(InSlotID))
+	if (InventorySlots.Contains(InSlotID))
 	{
 		InventorySlots.Remove(InSlotID);
 	}

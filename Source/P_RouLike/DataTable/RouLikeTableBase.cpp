@@ -1,10 +1,6 @@
-#include "SlotTable.h"
+#include "RouLikeTableBase.h"
 
 FRouLikeTableBase::FRouLikeTableBase(): ID(0)
 {
 }
 
-FSlotTable::FSlotTable()
-	: SlotIcon(nullptr), SlotGold(0)
-{
-}
