@@ -18,11 +18,11 @@ struct P_ROULIKE_API FRouLikeAttributeData
 
 
 USTRUCT(BlueprintType)
-struct FSlotData
+struct FRouLikeSlotData
 {
 	GENERATED_BODY()
 
-	FSlotData();
+	FRouLikeSlotData();
 
 	UPROPERTY()
 	int32 SlotID;

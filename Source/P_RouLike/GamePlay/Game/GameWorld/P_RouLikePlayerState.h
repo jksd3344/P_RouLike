@@ -10,6 +10,7 @@
 #include "P_RouLike/DataTable/SlotTable.h"
 #include "P_RouLikePlayerState.generated.h"
 
+
 /**
  * 
  */
@@ -30,14 +31,14 @@ public:
 
 	/*物品 不支持同步*/	
 	UPROPERTY(EditDefaultsOnly,Category="Player Data")
-	TMap<int32,FSlotData> InventorySlots;
+	TMap<int32,FRouLikeSlotData> InventorySlots;
 
 	/*物品装备的增删改查*/
 	bool AddSlotToInventory(int32 InSlotID);
 	void DeleteSlotToInventory(int32 InSlotID);
-	FSlotData* GetInventorySlotData(int32 InInventoryID);
+	FRouLikeSlotData* GetInventorySlotData(int32 InInventoryID);
 	
-	void InitializeInventorySlot(TMap<int32,FSlotData> InventorySlots);
+	void InitializeInventorySlot(TMap<int32,FRouLikeSlotData> InventorySlots);
 
 
 	/*是否存在可叠加*/

@@ -16,5 +16,11 @@ class P_ROULIKE_API ARoulikePropBase : public AActor
 public:
 	ARoulikePropBase();
 
+	UStaticMeshComponent* ReWenponMesh();
+protected:
+	UPROPERTY(BlueprintReadWrite,VisibleAnywhere)
+	USceneComponent* SceneRoot;
 	
+	UPROPERTY(BlueprintReadWrite,VisibleAnywhere)
+	UStaticMeshComponent* WenponMeshComponent;
 };

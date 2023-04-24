@@ -8,12 +8,12 @@ FRouLikeAttributeData::FRouLikeAttributeData()
 }
 
 
-FSlotData::FSlotData()
+FRouLikeSlotData::FRouLikeSlotData()
 	: SlotID(0), SlotICO(nullptr), PropType(ESlotPropType::SLOT_ALL), CD(0), Number(0)
 {
 }
 
-void FSlotData::Reset()
+void FRouLikeSlotData::Reset()
 {
 	SlotID=INDEX_NONE;
 	SlotICO=nullptr;

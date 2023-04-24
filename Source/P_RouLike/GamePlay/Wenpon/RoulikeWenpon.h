@@ -15,4 +15,6 @@ class P_ROULIKE_API ARoulikeWenpon : public ARoulikePropBase
 	GENERATED_BODY()
 public:
 	ARoulikeWenpon();
+
+	
 };

@@ -2,6 +2,8 @@
 
 #include "P_RouLikePlayerController.h"
 
+#include "P_RouLikePlayerState.h"
+
 AP_RouLikePlayerController::AP_RouLikePlayerController()
 {
 	bShowMouseCursor = true;
@@ -9,6 +11,10 @@ AP_RouLikePlayerController::AP_RouLikePlayerController()
 
 void AP_RouLikePlayerController::PickUpProp_Implementation()
 {
+	if (AP_RouLikePlayerState* InPlayerState =GetPlayerState<AP_RouLikePlayerState>())
+	{
+		
+	}
 }
 
 void AP_RouLikePlayerController::BuyProp_Implementation()
