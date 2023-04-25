@@ -23,6 +23,10 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent* CameraBoom;
+
+	UFUNCTION(BlueprintCallable)
+	void SetTargetPropID(ARoulikePropBase* InTargetProp);
+	
 private:
 	UFUNCTION()
 	void MoveForward(float Value);
@@ -35,7 +39,12 @@ private:
 	
 	UFUNCTION(Server, Reliable)
 	void MouseLeftReleased();
-	
+
+	UFUNCTION(Server,Reliable)
+	void PickUp();
+
+private:
+	ARoulikePropBase* TargetProp;
 };
 
 

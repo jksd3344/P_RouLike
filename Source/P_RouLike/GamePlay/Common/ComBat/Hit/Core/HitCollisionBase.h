@@ -13,15 +13,15 @@ class P_ROULIKE_API AHitCollisionBase:public AActor
 public:
 	AHitCollisionBase(const FObjectInitializer& ObjectInitializer);
 
-	/*×²»÷·ÑÑªµÄº¯Êı*/
+	/*æ’å‡»è´¹è¡€çš„å‡½æ•°*/
 	UFUNCTION()
 	virtual void HandleDamage(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
-	/*HitIDµÄÉèÖÃ»ñÈ¡º¯Êı*/
+	/*HitIDçš„è®¾ç½®è·å–å‡½æ•°*/
 	void SetHitID(int32 InNewHit){HitID = InNewHit;}
 	const int32 GetHitID()const{return HitID;}
 
-	/*»ñÈ¡×ÓÀà·µ»ØµÄÅö×²ºĞ×Ó*/
+	/*è·å–å­ç±»è¿”å›çš„ç¢°æ’ç›’å­*/
 	virtual UPrimitiveComponent* GetHitDamage(){return NULL;};
 
 	void SetHitDamageRelativePosition(const FVector &InNewPostion);
@@ -33,7 +33,7 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "HitCollision", meta = (AllowPrivateAccess = "true"))
 	class USceneComponent* HitCollisionRootComponent;
 
-	/*¸ù¾İHitIDÀ´¾ö¶¨±»¹¥»÷µÄ¶¯»­ÃÉÌ«ÆæÖĞµÄid*/
+	/*æ ¹æ®HitIDæ¥å†³å®šè¢«æ”»å‡»çš„åŠ¨ç”»è’™å¤ªå¥‡ä¸­çš„id*/
 	UPROPERTY()
 	int32 HitID;
 };
