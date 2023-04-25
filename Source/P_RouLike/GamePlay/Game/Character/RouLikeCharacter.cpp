@@ -5,6 +5,7 @@
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "P_RouLike/GamePlay/Game/GameWorld/P_RouLikePlayerState.h"
 
 
 ARouLikeCharacter::ARouLikeCharacter()
@@ -49,11 +50,17 @@ void ARouLikeCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	PlayerInputComponent->BindAxis("MoveRight", this, &ARouLikeCharacter::MoveRight);
 	PlayerInputComponent->BindAction("MouseLeft",IE_Pressed, this,  &ARouLikeCharacter::MouseLeftPress);
 	PlayerInputComponent->BindAction("MouseLeft",IE_Released, this,  &ARouLikeCharacter::MouseLeftReleased);
+	PlayerInputComponent->BindAction("PickUp",IE_Pressed, this,  &ARouLikeCharacter::PickUp);
 }
 
 void ARouLikeCharacter::Tick(float DeltaSeconds)
 {
     Super::Tick(DeltaSeconds);
+}
+
+void ARouLikeCharacter::SetTargetPropID(ARoulikePropBase* InTargetProp)
+{
+	TargetProp=InTargetProp;
 }
 
 void ARouLikeCharacter::MoveForward(float Value)
@@ -77,6 +84,23 @@ void ARouLikeCharacter::MoveRight(float Value)
 	const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 	// add movement in that direction
 	AddMovementInput(Direction, Value);
+}
+
+void ARouLikeCharacter::PickUp_Implementation()
+{
+	if (TargetProp->GetPropID()!=INDEX_NONE)
+	{
+		if (AP_RouLikePlayerState* InPlayerState =  Cast<AP_RouLikePlayerState>(GetPlayerState()))
+		{
+			if (FSlotTable* InSlotTable = InPlayerState->GetSlotTable(TargetProp->GetPropID()))
+			{
+				if (InSlotTable->PropClass)
+				{
+					
+				}
+			}
+		}
+	}
 };
 
 void ARouLikeCharacter::MouseLeftPress_Implementation()

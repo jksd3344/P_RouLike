@@ -7,13 +7,18 @@
 #include "UI_CharacterIcon.generated.h"
 
 class UTextBlock;
-class UProgressBar;
+class UImage;
 
 UCLASS()
 class P_ROULIKE_API UUI_CharacterIcon : public UUI_Base
 {
 	GENERATED_BODY()
+	
+	UPROPERTY(meta = (BindWidget))
+	UImage* CharacterIcon;
 
+	UPROPERTY(meta = (BindWidget))
+	UTextBlock* DeathTimeBlock;
 protected:
 	virtual void NativeConstruct();
 };

@@ -6,18 +6,18 @@
 #include "Engine/DataTable.h"
 #include "RouLikeTableBase.generated.h"
 
-//物品类型
+//鐗╁搧绫诲瀷
 UENUM(BlueprintType)
 enum class ESlotPropType :uint8
 {
-	SLOT_ALL			UMETA(DisplayName = "All"),        /*全部*/
-	SLOT_CONSUMABLES	UMETA(DisplayName = "Consumables"),/*耗材*/
+	SLOT_ALL			UMETA(DisplayName = "All"),        /*鍏ㄩ儴*/
+	SLOT_CONSUMABLES	UMETA(DisplayName = "Consumables"),/*鑰楁潗*/
 
-	SLOT_ARMS           UMETA(DisplayName = "ARMS"),       /*武器*/	
-	SLOT_HELMET         UMETA(DisplayName = "HELMET"),	   /*头盔*/
-	SLOT_ARMOR          UMETA(DisplayName = "ARMOR"),	   /*防具*/
-	SLOT_HALO           UMETA(DisplayName = "HALO"),	   /*光环*/
-	SLOT_SACREDOBJ      UMETA(DisplayName = "SACREDOBJ"),  /*神器*/
+	SLOT_ARMS           UMETA(DisplayName = "ARMS"),       /*姝﹀櫒*/	
+	SLOT_HELMET         UMETA(DisplayName = "HELMET"),	   /*澶寸洈*/
+	SLOT_ARMOR          UMETA(DisplayName = "ARMOR"),	   /*闃插叿*/
+	SLOT_HALO           UMETA(DisplayName = "HALO"),	   /*鍏夌幆*/
+	SLOT_SACREDOBJ      UMETA(DisplayName = "SACREDOBJ"),  /*绁炲櫒*/
 
 };
 

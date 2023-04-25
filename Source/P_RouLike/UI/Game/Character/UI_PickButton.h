@@ -3,25 +3,23 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Character/UI_PickButton.h"
+#include "Components/Border.h"
 #include "P_RouLike/UI/Core/UI_Base.h"
-#include "UI_MainScreen.generated.h"
+#include "UI_PickButton.generated.h"
 
 class UTextBlock;
 class UProgressBar;
 
 UCLASS()
-class P_ROULIKE_API UUI_MainScreen : public UUI_Base
+class P_ROULIKE_API UUI_PickButton : public UUI_Base
 {
 	GENERATED_BODY()
 
-	
-public:
-	void SetPickButtonVisiable(bool IsHid);
-
-protected:
-	virtual void NativeConstruct();
+	UPROPERTY(meta = (BindWidget))
+	UBorder* KeyBorder;
 
 	UPROPERTY(meta = (BindWidget))
-	UUI_PickButton* PickButton;
+	UTextBlock* KeyButton;
+protected:
+	virtual void NativeConstruct();
 };
