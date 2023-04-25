@@ -1,7 +1,7 @@
-#include "UI_MainScreen.h"
+#include "UI_Inventory.h"
 
 
-void UUI_MainScreen::NativeConstruct()
+void UUI_Inventory::NativeConstruct()
 {
 	Super::NativeConstruct();
 	

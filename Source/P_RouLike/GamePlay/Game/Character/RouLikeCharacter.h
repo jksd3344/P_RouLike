@@ -4,6 +4,8 @@
 #include "CoreMinimal.h"
 #include "Core/RouLikeCharacterBase.h"
 #include "GameFramework/Character.h"
+#include "P_RouLike/GamePlay/Wenpon/TriggerActor.h"
+#include "P_RouLike/GamePlay/Wenpon/Core/RoulikePropBase.h"
 #include "RouLikeCharacter.generated.h"
 
 UCLASS(Blueprintable)
@@ -25,7 +27,7 @@ public:
 	class USpringArmComponent* CameraBoom;
 
 	UFUNCTION(BlueprintCallable)
-	void SetTargetPropID(ARoulikePropBase* InTargetProp);
+	void SetTargetProp(ATriggerActor* InTargetProp);
 	
 private:
 	UFUNCTION()
@@ -44,7 +46,7 @@ private:
 	void PickUp();
 
 private:
-	ARoulikePropBase* TargetProp;
+	ATriggerActor* TriggerActor;
 };
 
 

@@ -4,13 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "P_RouLike/UI/Core/UI_Base.h"
-#include "UI_MainScreen.generated.h"
+#include "UI_InventorySlot.generated.h"
 
 class UTextBlock;
 class UProgressBar;
 
 UCLASS()
-class P_ROULIKE_API UUI_MainScreen : public UUI_Base
+class P_ROULIKE_API UUI_InventorySlot : public UUI_Base
 {
 	GENERATED_BODY()
 

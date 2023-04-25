@@ -1,7 +1,7 @@
-#include "UI_MainScreen.h"
+#include "UI_ICODragDrag.h"
 
 
-void UUI_MainScreen::NativeConstruct()
+void UUI_ICODragDrag::NativeConstruct()
 {
 	Super::NativeConstruct();
 	

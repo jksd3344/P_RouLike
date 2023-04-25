@@ -58,9 +58,9 @@ void ARouLikeCharacter::Tick(float DeltaSeconds)
     Super::Tick(DeltaSeconds);
 }
 
-void ARouLikeCharacter::SetTargetPropID(ARoulikePropBase* InTargetProp)
+void ARouLikeCharacter::SetTargetProp(ATriggerActor* InTargetProp)
 {
-	TargetProp=InTargetProp;
+	TriggerActor=InTargetProp;
 }
 
 void ARouLikeCharacter::MoveForward(float Value)
@@ -88,18 +88,20 @@ void ARouLikeCharacter::MoveRight(float Value)
 
 void ARouLikeCharacter::PickUp_Implementation()
 {
-	if (TargetProp->GetPropID()!=INDEX_NONE)
+	if (TriggerActor&&TriggerActor->GetPropID()!=INDEX_NONE)
 	{
 		if (AP_RouLikePlayerState* InPlayerState =  Cast<AP_RouLikePlayerState>(GetPlayerState()))
 		{
-			if (FSlotTable* InSlotTable = InPlayerState->GetSlotTable(TargetProp->GetPropID()))
+			if (FSlotTable* InSlotTable = InPlayerState->GetSlotTable(TriggerActor->GetPropID()))
 			{
 				if (InSlotTable->PropClass)
 				{
-					
+					ARoulikePropBase* InRoulikePropBase = Cast<ARoulikePropBase>(GetWorld()->SpawnActor(InSlotTable->PropClass));
+					InRoulikePropBase->AttachToComponent(GetMesh(),FAttachmentTransformRules::KeepRelativeTransform,TEXT("socketname"));
 				}
 			}
 		}
+		TriggerActor->Destroy();
 	}
 };
 

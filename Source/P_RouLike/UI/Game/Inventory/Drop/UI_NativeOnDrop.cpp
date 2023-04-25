@@ -1,7 +1,7 @@
-#include "UI_MainScreen.h"
+#include "UI_NativeOnDrop.h"
 
 
-void UUI_MainScreen::NativeConstruct()
+void UUI_NativeOnDrop::NativeConstruct()
 {
 	Super::NativeConstruct();
 	
