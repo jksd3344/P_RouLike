@@ -96,8 +96,12 @@ void ARouLikeCharacter::PickUp_Implementation()
 			{
 				if (InSlotTable->PropClass)
 				{
-					ARoulikePropBase* InRoulikePropBase = Cast<ARoulikePropBase>(GetWorld()->SpawnActor(InSlotTable->PropClass));
-					InRoulikePropBase->AttachToComponent(GetMesh(),FAttachmentTransformRules::KeepRelativeTransform,TEXT("socketname"));
+					if (ARoulikePropBase* InRoulikePropBase = Cast<ARoulikePropBase>(GetWorld()->SpawnActor(InSlotTable->PropClass)))
+					{
+						InRoulikePropBase->AttachToComponent(GetMesh(),FAttachmentTransformRules::KeepRelativeTransform,TEXT("socketname"));
+
+						InPlayerState->AddSlotToInventory(InSlotTable->ID);
+					}
 				}
 			}
 		}
