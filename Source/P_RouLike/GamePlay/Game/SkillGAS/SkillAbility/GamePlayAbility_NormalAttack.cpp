@@ -19,7 +19,7 @@ void UGamePlayAbility_NormalAttack::ActivateAbility(
 	{
 		if (PlayMontage(*FString::FromInt(InCharacterBase->GetCombatInfo()->CombatIndex)))
 		{
-			
+		
 		}
 	}
 }

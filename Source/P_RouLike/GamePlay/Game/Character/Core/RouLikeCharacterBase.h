@@ -35,18 +35,18 @@ public:
 
 	FORCEINLINE int32 GetID(){return ID;};
 
-	/*³õÊ¼»¯½ÇÉ«Êı¾İ*/
+	/*åˆå§‹åŒ–è§’è‰²æ•°æ®*/
 	UFUNCTION(NetMulticast,Reliable)
 	void UpdateCharacterAttribute(const FCharacterAttributeTable& CharacterAttributeTable);
 
-	/*ÊÇ·ñËÀÍö*/
+	/*æ˜¯å¦æ­»äº¡*/
 	bool IsDie();
 
-	/*ÉèÖÃ¹¥»÷id*/
+	/*è®¾ç½®æ”»å‡»id*/
 	void SetHitID(int32 InNewID);
 	const int32 GetHitID() const;
 
-	/*±»¹¥»÷*/
+	/*è¢«æ”»å‡»*/
 	virtual void PlayHit();
 	virtual void PlayDie();
 
@@ -54,40 +54,40 @@ public:
 	AActor* DamageCauser,const struct FGameplayTagContainer& InTags,
 	float InNewValue ,bool bPlayHit=true);
 	
-	/*¶¯»­ĞÅºÅ*/
+	/*åŠ¨ç”»ä¿¡å·*/
 	int32 GetDieIndex(){return DieIndex;};
 	virtual void AnimSignal(int32 InSignal);
 	UFUNCTION(BlueprintCallable,BlueprintImplementableEvent,DisplayName="AnimSignal",Category="AnimEvent")
 	void K2_AnimSignal(int32 InSignal);
 
-	/*»ñÈ¡ÑªÌõ*/
+	/*è·å–è¡€æ¡*/
 	UWidget* GetWidget();
 	void IsHideWidget(bool IsHide);
-	
-protected:
-	FORCEINLINE UFightComponent* GetFightComponent() { return FightComponents; }
 
-	/*¹¥»÷×é¼ş*/
+	FORCEINLINE UFightComponent* GetFightComponent() { return FightComponents; }
+protected:
+
+	/*æ”»å‡»ç»„ä»¶*/
 	UPROPERTY(Category=RouLikeComponent,BlueprintReadOnly,VisibleAnywhere)
 	TObjectPtr<UFightComponent>  FightComponents;
 	
-	/*GAS¼¼ÄÜ×é¼ş*/
+	/*GASæŠ€èƒ½ç»„ä»¶*/
 	UPROPERTY(Category=RouLikeComponent,BlueprintReadOnly,VisibleAnywhere)
 	TObjectPtr<URouLikeAbilitySystemComponent>  AbilitySystemComponent;
 
-	/*GAS ½ÇÉ«ÊôĞÔ×é¼ş*/
+	/*GAS è§’è‰²å±æ€§ç»„ä»¶*/
 	UPROPERTY(Category = MMOARPGCharacterBase, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<URouLikeAttributeSet> AttributeSet;
 
-	/*ÑªÌõ×é¼ş*/
+	/*è¡€æ¡ç»„ä»¶*/
 	UPROPERTY(Category = MMOARPGCharacterBase, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UWidgetComponent> Widget;
 
-	/*CharacterID ÎªÁË´Ó±íÖĞ²é³ö×Ô¼ºµÄ¼¼ÄÜ»òÆäËûĞÅÏ¢*/
+	/*CharacterID ä¸ºäº†ä»è¡¨ä¸­æŸ¥å‡ºè‡ªå·±çš„æŠ€èƒ½æˆ–å…¶ä»–ä¿¡æ¯*/
 	UPROPERTY(EditDefaultsOnly,Category="Cahracter")
 	int32 ID;
 
-	/*ËÀÍö×´Ì¬*/
+	/*æ­»äº¡çŠ¶æ€*/
 	UPROPERTY()
 	int32 DieIndex;
 };

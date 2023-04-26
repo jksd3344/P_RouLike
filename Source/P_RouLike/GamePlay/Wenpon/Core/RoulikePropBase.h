@@ -26,5 +26,5 @@ protected:
 	USceneComponent* SceneRoot;
 	
 	UPROPERTY(BlueprintReadWrite,VisibleAnywhere)
-	UStaticMeshComponent* WenponMeshComponent;
+	UStaticMeshComponent* ProMeshComponent;
 };

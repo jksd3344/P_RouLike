@@ -30,6 +30,10 @@ void UFightComponent::BeginPlay()
 	}
 }
 
+void UFightComponent::RepickRegisterComboAttack()
+{
+	
+}
 
 void UFightComponent::RouLikeGameplayAbility(const FName& InKey)
 {
@@ -83,6 +87,7 @@ void UFightComponent::RegisterComboAttack(FRouLikeCombat& InComboAttack, const F
 		InComboAttack.MaxIndex = 4;
 	}
 }
+
 
 UGamePlayAbilityCore* UFightComponent::GetGameplayAbility(const FName& InKey)
 {

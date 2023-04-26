@@ -6,16 +6,18 @@
 ARoulikePropBase::ARoulikePropBase()
 {
 	SceneRoot=CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SceneRoot"));
-	SceneRoot->SetupAttachment(RootComponent);
+	SetRootComponent(SceneRoot);
 	
-	WenponMeshComponent=CreateDefaultSubobject<UStaticMeshComponent>(TEXT("WenponMeshComponent"));
-	WenponMeshComponent->SetupAttachment(SceneRoot);
+	ProMeshComponent=CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ProMeshComponent"));
+	ProMeshComponent->SetupAttachment(SceneRoot);
+
+	bReplicates=true;
 
 }
 
 UStaticMeshComponent* ARoulikePropBase::ReWenponMesh()
 {
-	return WenponMeshComponent;
+	return ProMeshComponent;
 }
 
 

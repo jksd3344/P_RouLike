@@ -16,5 +16,14 @@ class P_ROULIKE_API ARoulikeWenpon : public ARoulikePropBase
 public:
 	ARoulikeWenpon();
 
-	
+	UFUNCTION()
+	virtual void AttachWeapons(const USkeletalMeshComponent* StaticMeshComp){};
+
+	/*更换装备*/
+	UFUNCTION()
+	virtual void ReplaceVenpon(){};
+
+	/*注册装备技能*/
+	UFUNCTION(BlueprintCallable)
+	virtual void RegisterSkillToFightComponent(){};
 };

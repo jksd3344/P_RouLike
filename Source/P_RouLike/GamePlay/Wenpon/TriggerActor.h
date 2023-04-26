@@ -28,6 +28,8 @@ public:
 
 	int32 GetPropID(){return PropID;};
 
+	UFUNCTION()
+	void ChangeTriggerActorComponent(int32 InPropID, UStaticMesh* InMeshComp);
 protected:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "RoulikePropBase", meta = (AllowPrivateAccess = "true"))
@@ -39,6 +41,6 @@ protected:
 	UPROPERTY(BlueprintReadWrite,VisibleAnywhere)
 	UStaticMeshComponent* WenponMeshComponent;
 
-	UPROPERTY(BlueprintReadWrite,VisibleAnywhere)
+	UPROPERTY(BlueprintReadWrite,EditAnywhere)
 	int32 PropID;
 };

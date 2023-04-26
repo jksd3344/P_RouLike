@@ -16,6 +16,8 @@ ATriggerActor::ATriggerActor()
 	TouchBoxs->SetupAttachment(SceneRoot);
 	TouchBoxs->OnComponentBeginOverlap.AddDynamic(this,&ATriggerActor::BeginIsCanPickUp);
 	TouchBoxs->OnComponentEndOverlap.AddDynamic(this,&ATriggerActor::EndIsCanPickUp);
+	
+	bReplicates =true;
 }
 
 UStaticMeshComponent* ATriggerActor::ReWenponMesh()
@@ -29,9 +31,16 @@ void ATriggerActor::BeginIsCanPickUp(UPrimitiveComponent* OverlappedComponent, A
 	{
 		if (!InTargetActor->IsDie())
 		{
+			if (GetLocalRole()==ROLE_Authority)
+			{
+				SetOwner(InTargetActor);
+				InTargetActor->SetTargetProp(this);
+			}
+			
 			if (AP_RouLikeHUD* RouLikeHUD =  Cast<AP_RouLikeHUD>(GetWorld()->GetFirstPlayerController()->GetHUD()))
 			{
-				InTargetActor->SetTargetProp(this);
+				
+				
 				RouLikeHUD->GetMainScreen()->SetPickButtonVisiable(false);
 			}
 		}
@@ -44,9 +53,13 @@ void ATriggerActor::EndIsCanPickUp(UPrimitiveComponent* OverlapedComponent, AAct
 	{
 		if (!InTargetActor->IsDie())
 		{
-			if (AP_RouLikeHUD* RouLikeHUD =  Cast<AP_RouLikeHUD>(GetWorld()->GetFirstPlayerController()->GetHUD()))
+			if (GetLocalRole()==ROLE_Authority)
 			{
 				InTargetActor->SetTargetProp(nullptr);
+			}
+			
+			if (AP_RouLikeHUD* RouLikeHUD =  Cast<AP_RouLikeHUD>(GetWorld()->GetFirstPlayerController()->GetHUD()))
+			{
 				RouLikeHUD->GetMainScreen()->SetPickButtonVisiable(true);
 			}
 		}
@@ -58,4 +71,10 @@ void ATriggerActor::EndIsCanPickUp(UPrimitiveComponent* OverlapedComponent, AAct
 void ATriggerActor::BeginPlay()
 {
 	Super::BeginPlay();
+}
+
+void ATriggerActor::ChangeTriggerActorComponent(int32 InPropID, UStaticMesh* InMeshComp)
+{
+	PropID = InPropID;
+	WenponMeshComponent->SetStaticMesh(InMeshComp);
 }

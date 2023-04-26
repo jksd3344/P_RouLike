@@ -4,6 +4,7 @@
 #include "CoreMinimal.h"
 #include "Core/RouLikeCharacterBase.h"
 #include "GameFramework/Character.h"
+#include "P_RouLike/GamePlay/Wenpon/RoulikeWenpon.h"
 #include "P_RouLike/GamePlay/Wenpon/TriggerActor.h"
 #include "P_RouLike/GamePlay/Wenpon/Core/RoulikePropBase.h"
 #include "RouLikeCharacter.generated.h"
@@ -26,9 +27,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent* CameraBoom;
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(Server, Reliable)
 	void SetTargetProp(ATriggerActor* InTargetProp);
-	
+
 private:
 	UFUNCTION()
 	void MoveForward(float Value);
@@ -46,7 +47,11 @@ private:
 	void PickUp();
 
 private:
+	UPROPERTY()
 	ATriggerActor* TriggerActor;
+
+	UPROPERTY()
+	ARoulikeWenpon* WenponActor;
 };
 
 

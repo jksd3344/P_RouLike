@@ -20,7 +20,7 @@ public:
 	
 	virtual FString GetNotifyName_Implementation() const override;
 
-
+	
 #if WITH_EDITORONLY_DATA
 	virtual FLinearColor GetEditorColor() override;
 #endif 

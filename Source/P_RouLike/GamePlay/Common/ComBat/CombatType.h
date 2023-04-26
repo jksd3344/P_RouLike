@@ -12,27 +12,27 @@ struct P_ROULIKE_API FRouLikeCombat
 
 	FRouLikeCombat();
 
-	/*Á¬»÷ĞòÁĞÏÂ±ê*/
+	/*è¿å‡»åºåˆ—ä¸‹æ ‡*/
 	UPROPERTY(EditDefaultsOnly, Category = ComboAttack)
 	int32 CombatIndex;
 
-	/*Èç¹ûÊó±ê°´ÏÂÎ´ËÉ¿ª*/
+	/*å¦‚æœé¼ æ ‡æŒ‰ä¸‹æœªæ¾å¼€*/
 	UPROPERTY(EditDefaultsOnly, Category = ComboAttack)
 	bool bLongPress;
 
-	/*Èç¹ûÊó±ê°´ÏÂÔÚstateÇø¼äÄÚ*/
+	/*å¦‚æœé¼ æ ‡æŒ‰ä¸‹åœ¨stateåŒºé—´å†…*/
 	UPROPERTY(EditDefaultsOnly, Category = ComboAttack)
 	bool bShortPress;
 
-	/*³õÊ¼»¯µÚÒ»´ÎµÄcombat*/
+	/*åˆå§‹åŒ–ç¬¬ä¸€æ¬¡çš„combat*/
 	UPROPERTY()
 	FName ComboKey;
 
-	/*×î´óÁ¬»÷Êı*/
+	/*æœ€å¤§è¿å‡»æ•°*/
 	UPROPERTY()
 	int32 MaxIndex;
 
-	/*Ö´ĞĞÁ¬»÷µÄcharacter*/
+	/*æ‰§è¡Œè¿å‡»çš„character*/
 	class ICombatInterface* Character;
 	
 	void UpdateCombatIndex();

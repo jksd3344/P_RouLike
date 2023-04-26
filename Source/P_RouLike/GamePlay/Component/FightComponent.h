@@ -40,6 +40,8 @@ public:
 
 	void RegisterComboAttack(FRouLikeCombat& InComboAttack, const FName& Key);
 
+	void RepickRegisterComboAttack();
+
 	UGamePlayAbilityCore *GetGameplayAbility(const FName &InKey);
 	
 	/*GAS Skill*/

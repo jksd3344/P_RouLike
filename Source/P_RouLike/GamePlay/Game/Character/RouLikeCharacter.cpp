@@ -40,6 +40,7 @@ ARouLikeCharacter::ARouLikeCharacter()
 	// Activate ticking in order to update the cursor every frame.
 	PrimaryActorTick.bCanEverTick = true;
 	PrimaryActorTick.bStartWithTickEnabled = true;
+	
 }
 
 
@@ -58,10 +59,11 @@ void ARouLikeCharacter::Tick(float DeltaSeconds)
     Super::Tick(DeltaSeconds);
 }
 
-void ARouLikeCharacter::SetTargetProp(ATriggerActor* InTargetProp)
+void ARouLikeCharacter::SetTargetProp_Implementation(ATriggerActor* InTargetProp)
 {
 	TriggerActor=InTargetProp;
 }
+
 
 void ARouLikeCharacter::MoveForward(float Value)
 {
@@ -94,18 +96,32 @@ void ARouLikeCharacter::PickUp_Implementation()
 		{
 			if (FSlotTable* InSlotTable = InPlayerState->GetSlotTable(TriggerActor->GetPropID()))
 			{
-				if (InSlotTable->PropClass)
+				bool IsWenpon=false;
+				for (auto& Tmp:InSlotTable->SlotType)
 				{
-					if (ARoulikePropBase* InRoulikePropBase = Cast<ARoulikePropBase>(GetWorld()->SpawnActor(InSlotTable->PropClass)))
+					if (Tmp==ESlotPropType::SLOT_HELMET)
 					{
-						InRoulikePropBase->AttachToComponent(GetMesh(),FAttachmentTransformRules::KeepRelativeTransform,TEXT("socketname"));
+						IsWenpon=true;
+					}
+				}
 
+				FActorSpawnParameters ActorSpawnParameters;
+				ActorSpawnParameters.Instigator = this;
+				if (InSlotTable->PropClass&&IsWenpon)
+				{
+					WenponActor = GetWorld()->SpawnActor<ARoulikeWenpon>(InSlotTable->PropClass,ActorSpawnParameters);
+					WenponActor->SetOwner(this);
+					if (WenponActor)
+					{
+						WenponActor->AttachToComponent(GetMesh(),FAttachmentTransformRules::KeepRelativeTransform,TEXT("LhandSocket"));
+						WenponActor->AttachWeapons(GetMesh());
 						InPlayerState->AddSlotToInventory(InSlotTable->ID);
+
+						TriggerActor->Destroy();
 					}
 				}
 			}
 		}
-		TriggerActor->Destroy();
 	}
 };
 
