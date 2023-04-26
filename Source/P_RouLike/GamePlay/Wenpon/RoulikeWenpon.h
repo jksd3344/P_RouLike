@@ -25,5 +25,5 @@ public:
 
 	/*注册装备技能*/
 	UFUNCTION(BlueprintCallable)
-	virtual void RegisterSkillToFightComponent(){};
+	virtual void RegisterSkillToFightComponent();
 };

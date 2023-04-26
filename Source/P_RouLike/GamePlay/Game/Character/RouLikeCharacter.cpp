@@ -88,6 +88,8 @@ void ARouLikeCharacter::MoveRight(float Value)
 	AddMovementInput(Direction, Value);
 }
 
+
+
 void ARouLikeCharacter::PickUp_Implementation()
 {
 	if (TriggerActor&&TriggerActor->GetPropID()!=INDEX_NONE)
@@ -115,6 +117,8 @@ void ARouLikeCharacter::PickUp_Implementation()
 					{
 						WenponActor->AttachToComponent(GetMesh(),FAttachmentTransformRules::KeepRelativeTransform,TEXT("LhandSocket"));
 						WenponActor->AttachWeapons(GetMesh());
+						WenponActor->RegisterSkillToFightComponent();
+						
 						InPlayerState->AddSlotToInventory(InSlotTable->ID);
 
 						TriggerActor->Destroy();
@@ -124,6 +128,18 @@ void ARouLikeCharacter::PickUp_Implementation()
 		}
 	}
 };
+
+void ARouLikeCharacter::AddProp()
+{
+}
+
+void ARouLikeCharacter::AddWenpon()
+{
+}
+
+void ARouLikeCharacter::ChangeWenpon()
+{
+}
 
 void ARouLikeCharacter::MouseLeftPress_Implementation()
 {

@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Components/SphereComponent.h"
 #include "GameFramework/GameStateBase.h"
 #include "RoulikePropBase.generated.h"
 
@@ -27,4 +26,7 @@ protected:
 	
 	UPROPERTY(BlueprintReadWrite,VisibleAnywhere)
 	UStaticMeshComponent* ProMeshComponent;
+
+	UPROPERTY(BlueprintReadWrite,EditAnywhere)
+	int32 PropId;
 };

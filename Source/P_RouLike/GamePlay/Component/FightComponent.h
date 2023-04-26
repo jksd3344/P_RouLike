@@ -9,6 +9,7 @@
 #include "P_RouLike/GamePlay/Game/SkillGAS/RouLikeAbilitySystemComponent.h"
 #include "FightComponent.generated.h"
 
+
 class ARouLikeCharacterBase;
 class AP_RouLikeGameState;
 class UGamePlayAbilityCore;
@@ -40,7 +41,7 @@ public:
 
 	void RegisterComboAttack(FRouLikeCombat& InComboAttack, const FName& Key);
 
-	void RepickRegisterComboAttack();
+	void RepickRegisterComboAttack(const FName& InKey,int32 WenponID);
 
 	UGamePlayAbilityCore *GetGameplayAbility(const FName &InKey);
 	
