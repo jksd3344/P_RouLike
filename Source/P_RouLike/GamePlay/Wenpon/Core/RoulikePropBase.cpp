@@ -4,7 +4,6 @@
 #include "P_RouLike/GamePlay/Game/GameWorld/P_RouLikeHUD.h"
 
 ARoulikePropBase::ARoulikePropBase()
-	:PropId(INDEX_NONE)
 {
 	SceneRoot=CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SceneRoot"));
 	SetRootComponent(SceneRoot);
@@ -13,6 +12,7 @@ ARoulikePropBase::ARoulikePropBase()
 	ProMeshComponent->SetupAttachment(SceneRoot);
 
 	bReplicates=true;
+
 }
 
 UStaticMeshComponent* ARoulikePropBase::ReWenponMesh()

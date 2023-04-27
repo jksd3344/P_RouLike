@@ -8,6 +8,7 @@
 #include "SlotTable.generated.h"
 
 
+
 USTRUCT()
 struct FSlotTable:public FRouLikeTableBase
 {
@@ -31,5 +32,4 @@ struct FSlotTable:public FRouLikeTableBase
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Slot")
 	TSubclassOf<ARoulikePropBase> PropClass;
-
 };

@@ -18,6 +18,7 @@ public:
 
 	virtual void AttachWeapons(const USkeletalMeshComponent* StaticMeshComp)override;
 
+	virtual void RegisterSkillToFightComponent()override;
 
 	virtual void ReplaceVenpon() override;
 	

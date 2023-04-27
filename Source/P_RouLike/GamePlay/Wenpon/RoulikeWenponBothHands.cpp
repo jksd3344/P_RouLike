@@ -11,7 +11,13 @@ void ARoulikeWenponBothHands::AttachWeapons(const USkeletalMeshComponent* Static
 	Super::AttachWeapons(StaticMeshComp);
 }
 
-
+void ARoulikeWenponBothHands::RegisterSkillToFightComponent()
+{
+	if (ARouLikeCharacter* InCharacter = Cast<ARouLikeCharacter>(GetOwner()))
+	{
+		//InCharacter->GetFightComponent()->RegisterComboAttack();
+	}
+}
 
 void ARoulikeWenponBothHands::ReplaceVenpon()
 {

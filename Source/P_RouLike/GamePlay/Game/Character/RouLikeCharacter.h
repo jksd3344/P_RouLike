@@ -45,11 +45,7 @@ private:
 
 	UFUNCTION(Server,Reliable)
 	void PickUp();
-	void AddProp();
-	void AddWenpon();
-	void ChangeWenpon();
 
-	
 private:
 	UPROPERTY()
 	ATriggerActor* TriggerActor;

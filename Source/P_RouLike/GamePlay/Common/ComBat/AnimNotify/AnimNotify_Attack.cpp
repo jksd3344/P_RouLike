@@ -27,7 +27,7 @@ void UAnimNotify_Attack::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceB
 
 		if (InCharacter->GetWorld())
 		{
-			if (!bCanCreateOnClient||InCharacter->GetWorld()->GetNetMode()==ENetMode::NM_DedicatedServer)
+			if (!bCanCreateOnClient||InCharacter->GetWorld()->IsServer())
 			{
 				/*´´½¨Åö×²Ìå*/
 				if (AHitCollisionBase* HitCollision = InCharacter->GetWorld()->SpawnActor<AHitCollisionBase>(HitObjectClass,ComponentLocation,ComponentRotation,ActorSpawnParameters))

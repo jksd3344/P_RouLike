@@ -13,7 +13,13 @@ void ARoulikeWenponSingleHand::AttachWeapons(const USkeletalMeshComponent* Stati
 	
 }
 
-
+void ARoulikeWenponSingleHand::RegisterSkillToFightComponent()
+{
+	if (ARouLikeCharacter* InCharacter = Cast<ARouLikeCharacter>(GetOwner()))
+	{
+		//InCharacter->GetFightComponent()->RegisterComboAttack();
+	}
+}
 
 void ARoulikeWenponSingleHand::ReplaceVenpon()
 {

@@ -1,6 +1,5 @@
 
 #include "HitCollisionBox.h"
-
 #include "Components/BoxComponent.h"
 
 AHitCollisionBox::AHitCollisionBox(const FObjectInitializer& ObjectInitializer)

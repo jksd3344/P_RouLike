@@ -11,10 +11,11 @@ UFightComponent::UFightComponent()
 void UFightComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 	if (RouLikeCharacterBase.IsValid())
 	{
 		AbilitySystemComponent = Cast<URouLikeAbilitySystemComponent>(RouLikeCharacterBase->GetAbilitySystemComponent());
+		const FName InKey=TEXT("Character.Attack.NormalAttack");
 		if (RouLikeCharacterBase->GetLocalRole() == ENetRole::ROLE_Authority)
 		{
 			//测试
@@ -25,23 +26,31 @@ void UFightComponent::BeginPlay()
 			//只能服务器注册 客户端不能注册
 			AbilitySystemComponent->InitAbilityActorInfo(RouLikeCharacterBase.Get(), RouLikeCharacterBase.Get());
 		}
-		RegisterComboAttack(CombatAttack, TEXT("Character.Attack.NormalAttack"));
+		RegisterComboAttack(CombatAttack, InKey);
 	}
 }
 
-void UFightComponent::RepickRegisterComboAttack(const FName& InKey,int32 WenponID)
+void UFightComponent::RepickRegisterComboAttack()
 {
+<<<<<<< HEAD
 	if (AP_RouLikePlayerState* InPlayState = GetWorld()->GetFirstPlayerController()->GetPlayerState<AP_RouLikePlayerState>())
 	{
 		if (FSlotAttributeTable* AttributeTable = InPlayState->GetAttributeTable(WenponID))
 		{
 			if (Skills.Contains(InKey))
 			{
-				FGameplayAbilitySpecHandle AbilitySpecHandle = AddAbility(AttributeTable->GameCombatAbility);
+				FGameplayAbilitySpecHandle AbilitySpecHandle = AddAbility(*AttributeTable->GameCombatAbility);
 				Skills[InKey] = AbilitySpecHandle;
+
+				RegisterComboAttack(CombatAttack, TEXT("Character.Attack.NormalAttack"));
+
+				
 			}
 		}
 	}
+=======
+	
+>>>>>>> parent of 83bd752 (xin 2023 04 26)
 }
 
 void UFightComponent::RouLikeGameplayAbility(const FName& InKey)
