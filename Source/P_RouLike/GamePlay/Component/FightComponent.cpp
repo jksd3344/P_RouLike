@@ -30,27 +30,21 @@ void UFightComponent::BeginPlay()
 	}
 }
 
-void UFightComponent::RepickRegisterComboAttack()
+void UFightComponent::RepickRegisterComboAttack(const int32 WenponID,const FName& InKey)
 {
-<<<<<<< HEAD
 	if (AP_RouLikePlayerState* InPlayState = GetWorld()->GetFirstPlayerController()->GetPlayerState<AP_RouLikePlayerState>())
 	{
 		if (FSlotAttributeTable* AttributeTable = InPlayState->GetAttributeTable(WenponID))
 		{
 			if (Skills.Contains(InKey))
 			{
-				FGameplayAbilitySpecHandle AbilitySpecHandle = AddAbility(*AttributeTable->GameCombatAbility);
+				FGameplayAbilitySpecHandle AbilitySpecHandle = AddAbility(*AttributeTable->GameplayAbility);
 				Skills[InKey] = AbilitySpecHandle;
 
 				RegisterComboAttack(CombatAttack, TEXT("Character.Attack.NormalAttack"));
-
-				
 			}
 		}
 	}
-=======
-	
->>>>>>> parent of 83bd752 (xin 2023 04 26)
 }
 
 void UFightComponent::RouLikeGameplayAbility(const FName& InKey)

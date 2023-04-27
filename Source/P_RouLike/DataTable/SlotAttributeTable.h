@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "RouLikeTableBase.h"
+#include "Abilities/GameplayAbility.h"
 #include "SlotAttributeTable.generated.h"
 
 //增益效果
@@ -60,5 +61,10 @@ struct FSlotAttributeTable:public FRouLikeTableBase
 	//道具或者技能间隔
 	UPROPERTY(EditDefaultsOnly, Category = "Slot Attribute")
 	FSlotAttributeValue CD;
+
+	
+	UPROPERTY(EditDefaultsOnly, Category = "CharacterSkill")
+	TSubclassOf<UGameplayAbility> GameplayAbility;
+	
 };
 

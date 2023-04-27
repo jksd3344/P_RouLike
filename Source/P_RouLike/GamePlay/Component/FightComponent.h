@@ -40,7 +40,7 @@ public:
 
 	void RegisterComboAttack(FRouLikeCombat& InComboAttack, const FName& Key);
 
-	void RepickRegisterComboAttack();
+	void RepickRegisterComboAttack(const int32 WenponID,const FName& InKey);
 
 	UGamePlayAbilityCore *GetGameplayAbility(const FName &InKey);
 	
