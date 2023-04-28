@@ -115,6 +115,8 @@ void ARouLikeCharacter::PickUp_Implementation()
 					{
 						WenponActor->AttachToComponent(GetMesh(),FAttachmentTransformRules::KeepRelativeTransform,TEXT("LhandSocket"));
 						WenponActor->AttachWeapons(GetMesh());
+						WenponActor->RegisterSkillToFightComponent(InSlotTable->ID,TEXT("Character.Attack.NormalAttack"));
+
 						InPlayerState->AddSlotToInventory(InSlotTable->ID);
 
 						TriggerActor->Destroy();
