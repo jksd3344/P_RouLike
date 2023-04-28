@@ -17,7 +17,7 @@ public:
 	ARoulikeWenpon();
 
 	UFUNCTION()
-	virtual void AttachWeapons(const USkeletalMeshComponent* StaticMeshComp){};
+	virtual void AttachWeapons(USkeletalMeshComponent* StaticMeshComp){};
 
 	/*更换装备*/
 	UFUNCTION()

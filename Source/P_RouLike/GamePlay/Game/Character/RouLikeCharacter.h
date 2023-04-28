@@ -46,6 +46,12 @@ private:
 	UFUNCTION(Server,Reliable)
 	void PickUp();
 
+	UFUNCTION()
+	void AddWenpon();
+
+	UFUNCTION()
+	void ReplaceWenpon();
+
 private:
 	UPROPERTY()
 	ATriggerActor* TriggerActor;

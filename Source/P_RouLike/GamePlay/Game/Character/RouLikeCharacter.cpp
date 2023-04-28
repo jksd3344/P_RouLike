@@ -88,7 +88,7 @@ void ARouLikeCharacter::MoveRight(float Value)
 	AddMovementInput(Direction, Value);
 }
 
-void ARouLikeCharacter::PickUp_Implementation()
+void ARouLikeCharacter::AddWenpon()
 {
 	if (TriggerActor&&TriggerActor->GetPropID()!=INDEX_NONE)
 	{
@@ -113,7 +113,6 @@ void ARouLikeCharacter::PickUp_Implementation()
 					WenponActor->SetOwner(this);
 					if (WenponActor)
 					{
-						WenponActor->AttachToComponent(GetMesh(),FAttachmentTransformRules::KeepRelativeTransform,TEXT("LhandSocket"));
 						WenponActor->AttachWeapons(GetMesh());
 						WenponActor->RegisterSkillToFightComponent(InSlotTable->ID,TEXT("Character.Attack.NormalAttack"));
 
@@ -124,6 +123,22 @@ void ARouLikeCharacter::PickUp_Implementation()
 				}
 			}
 		}
+	}
+}
+
+void ARouLikeCharacter::ReplaceWenpon()
+{
+	
+}
+
+void ARouLikeCharacter::PickUp_Implementation()
+{
+	if (!WenponActor)
+	{
+		AddWenpon();
+	}else
+	{
+		ReplaceWenpon();
 	}
 };
 

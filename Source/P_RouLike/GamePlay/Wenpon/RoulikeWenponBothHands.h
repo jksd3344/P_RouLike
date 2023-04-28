@@ -16,7 +16,7 @@ class P_ROULIKE_API ARoulikeWenponBothHands : public ARoulikeWenpon
 public:
 	ARoulikeWenponBothHands();
 
-	virtual void AttachWeapons(const USkeletalMeshComponent* StaticMeshComp)override;
+	virtual void AttachWeapons(USkeletalMeshComponent* StaticMeshComp)override;
 
 
 	virtual void ReplaceVenpon() override;

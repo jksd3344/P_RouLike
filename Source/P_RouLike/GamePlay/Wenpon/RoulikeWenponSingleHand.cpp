@@ -7,10 +7,11 @@ ARoulikeWenponSingleHand::ARoulikeWenponSingleHand()
 
 }
 
-void ARoulikeWenponSingleHand::AttachWeapons(const USkeletalMeshComponent* StaticMeshComp)
+void ARoulikeWenponSingleHand::AttachWeapons(USkeletalMeshComponent* StaticMeshComp)
 {
 	Super::AttachWeapons(StaticMeshComp);
 	
+	AttachToComponent(StaticMeshComp,FAttachmentTransformRules::KeepRelativeTransform,TEXT("LhandSocket"));
 }
 
 
