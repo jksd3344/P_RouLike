@@ -12,9 +12,9 @@ UAnimNotify_Attack::UAnimNotify_Attack()
 	InSocketName = TEXT("OpenFile");
 }
 
-void UAnimNotify_Attack::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation)
+void UAnimNotify_Attack::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, const FAnimNotifyEventReference& EventReference)
 {
-	Super::Notify(MeshComp, Animation);
+	Super::Notify(MeshComp, Animation,EventReference);
 	
 	if (AActor* InCharacter = Cast<AActor>(MeshComp->GetOuter()))
 	{

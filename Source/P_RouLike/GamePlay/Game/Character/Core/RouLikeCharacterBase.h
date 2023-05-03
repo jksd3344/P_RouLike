@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Components/WidgetComponent.h"
 #include "GameFramework/Character.h"
+#include "P_RouLike/Common/RouLikeType.h"
 #include "P_RouLike/DataTable/CharacterAttributeTable.h"
 #include "P_RouLike/GamePlay/Common/ComBat/CombatInterface/CombatInterface.h"
 #include "P_RouLike/GamePlay/Component/FightComponent.h"
@@ -76,6 +77,12 @@ public:
 
 	/*是否可以升级*/
 	virtual bool IsUpdateLevel();
+
+	/*获取角色类型*/
+	ECharacterType GetCharacterType();
+
+	/*获取目标*/
+	virtual AActor* GetTarget() override;
 protected:
 	//升级
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "MMOARPG|Effect")

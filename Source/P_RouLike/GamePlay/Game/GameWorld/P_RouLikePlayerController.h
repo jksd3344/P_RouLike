@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "P_RouLike/GamePlay/Game/Character/Core/RouLikeCharacterBase.h"
 #include "P_RouLikePlayerController.generated.h"
 
 class ATriggerActor;
@@ -24,7 +25,7 @@ public:
 	/*拾取物品*/
 	UFUNCTION(Server,Reliable)
 	void PickUpProp(ATriggerActor* TriggerActor,ARoulikeWenpon* WenponActor);
-protected:
+
 	
 	/*购买物品*/
 	UFUNCTION(Server,Reliable)
@@ -38,9 +39,18 @@ protected:
 	UFUNCTION(Server,Reliable)
 	void Use(int32 InMoveInventoryID);
 
-	// Begin PlayerController interface
-	virtual void PlayerTick(float DeltaTime) override;
+public:
+	/*获取目标*/
+	UFUNCTION(Server,Reliable)
+	void ResetTargetOnServer(ARouLikeCharacterBase* InNewTarget);
 
+	ARouLikeCharacterBase* GetTarget() { return Target.Get();}
+	
+	virtual void Tick(float DeltaSeconds) override;
+	
+protected:
+
+	TWeakObjectPtr<ARouLikeCharacterBase> Target;
 };
 
 

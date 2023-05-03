@@ -15,7 +15,7 @@ class P_ROULIKE_API UAnimNotify_CombatReset : public UAnimNotify
 public:
 	UAnimNotify_CombatReset();
 	
-	virtual void Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation) override;
+	virtual void Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, const FAnimNotifyEventReference& EventReference) override;
 	
 	virtual FString GetNotifyName_Implementation() const override;
 
