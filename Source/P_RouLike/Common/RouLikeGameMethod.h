@@ -7,7 +7,7 @@
 
 namespace RouLikeGameMethod
 {
-	ARouLikeCharacterBase *FindTarget(ARouLikeCharacterBase* InThis,const TArray<ECharacterType>&InIgnoreType,float InRange=500.f);
+	ARouLikeCharacterBase *FindTarget(const TArray<ECharacterType>&InIgnoreType = TArray<ECharacterType>(),ARouLikeCharacterBase* InMyPawn,float InRange=500.f);
 
 	ECharacterType GetCharacterType(int32 InCharacterID);
 }

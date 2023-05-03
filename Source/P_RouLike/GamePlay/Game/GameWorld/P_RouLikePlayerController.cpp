@@ -36,9 +36,19 @@ void AP_RouLikePlayerController::Use_Implementation(int32 InMoveInventoryID)
 {
 }
 
-void AP_RouLikePlayerController::PlayerTick(float DeltaTime)
+
+void AP_RouLikePlayerController::Tick(float DeltaSeconds)
 {
-	Super::PlayerTick(DeltaTime);
+	Super::Tick(DeltaSeconds);
+	
+	if (GetPawn())
+	{
+		if (GetLocalRole()==ENetRole::ROLE_AutonomousProxy||GetLocalRole() == ENetRole::ROLE_SimulatedProxy)
+		{
+			
+		}
+		
+	}
 }
 
 
