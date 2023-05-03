@@ -6,6 +6,8 @@
 #include "GameFramework/PlayerController.h"
 #include "P_RouLikePlayerController.generated.h"
 
+class ATriggerActor;
+class ARoulikeWenpon;
 UCLASS()
 class AP_RouLikePlayerController : public APlayerController
 {
@@ -13,11 +15,16 @@ class AP_RouLikePlayerController : public APlayerController
 
 public:
 	AP_RouLikePlayerController();
+
 	
-protected:
+	/*拾取物品Widget提示*/
+	UFUNCTION(Client,Reliable)
+	void PickUpPropClueForWidet(bool IsHidWdiget);
+
 	/*拾取物品*/
 	UFUNCTION(Server,Reliable)
-	void PickUpProp();
+	void PickUpProp(ATriggerActor* TriggerActor,ARoulikeWenpon* WenponActor);
+protected:
 	
 	/*购买物品*/
 	UFUNCTION(Server,Reliable)
@@ -30,7 +37,7 @@ protected:
 	/*使用*/
 	UFUNCTION(Server,Reliable)
 	void Use(int32 InMoveInventoryID);
-	
+
 	// Begin PlayerController interface
 	virtual void PlayerTick(float DeltaTime) override;
 

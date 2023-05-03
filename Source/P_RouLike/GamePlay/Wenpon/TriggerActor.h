@@ -28,8 +28,9 @@ public:
 
 	int32 GetPropID(){return PropID;};
 
-	UFUNCTION()
-	void ChangeTriggerActorComponent(int32 InPropID, UStaticMesh* InMeshComp);
+	UFUNCTION(NetMulticast,Reliable)
+	void SetPropType(int32 InPropID, UStaticMesh* InMeshComp);
+
 protected:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "RoulikePropBase", meta = (AllowPrivateAccess = "true"))

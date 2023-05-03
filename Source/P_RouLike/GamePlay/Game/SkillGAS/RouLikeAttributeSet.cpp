@@ -28,7 +28,7 @@ void URouLikeAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCal
 	//获取标签
 	const FGameplayTagContainer& SourceTagContainer = *Data.EffectSpec.CapturedSourceTags.GetAggregatedTags();
 	
-	/*获取目标*/
+	/*获取被攻击者*/
 	ARouLikeCharacterBase* Target = Data.Target.AbilityActorInfo.IsValid() ? Cast<ARouLikeCharacterBase>(Data.Target.AbilityActorInfo->AvatarActor) : NULL;
 	
 	/*获取造成伤害*/
@@ -65,18 +65,23 @@ void URouLikeAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCal
 	};
 	
 	/*判断是不是health*/
-	if (Data.EvaluatedData.Attribute == GetHealthAttribute())
+	if(Data.EvaluatedData.Attribute == GetDamageAttribute())
 	{
-		/*防止溢出*/
-		SetHealth(FMath::Clamp(GetHealth(), 0.f, GetMaxHealth()));
+		const float TmpDamage = GetDamage();
+		SetDamage(0.f);
 
-		if (Target)
+		const float OldHealth = GetHealth();
+		SetHealth(FMath::Clamp(OldHealth-TmpDamage,0.f,GetMaxHealth()));
+
+		if (Target)/*target是被攻击者*/
 		{
 			ARouLikeCharacterBase* SourceCharacter = NULL;
 			AActor* SourceActor = NULL;
 			GetSourceCharacter(SourceActor,SourceCharacter);
 
+			/*获取的SourceCharacter是攻击者*/
 			Target->HandleHealth(SourceCharacter, SourceActor, SourceTagContainer, Magnitude);
+			
 		}
 	}
 }

@@ -5,6 +5,7 @@
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "P_RouLike/GamePlay/Game/GameWorld/P_RouLikePlayerController.h"
 #include "P_RouLike/GamePlay/Game/GameWorld/P_RouLikePlayerState.h"
 
 
@@ -88,7 +89,8 @@ void ARouLikeCharacter::MoveRight(float Value)
 	AddMovementInput(Direction, Value);
 }
 
-void ARouLikeCharacter::AddWenpon()
+
+void ARouLikeCharacter::PickUp_Implementation()
 {
 	if (TriggerActor&&TriggerActor->GetPropID()!=INDEX_NONE)
 	{
@@ -96,49 +98,87 @@ void ARouLikeCharacter::AddWenpon()
 		{
 			if (FSlotTable* InSlotTable = InPlayerState->GetSlotTable(TriggerActor->GetPropID()))
 			{
-				bool IsWenpon=false;
-				for (auto& Tmp:InSlotTable->SlotType)
+				auto IsType = [&](const ESlotPropType InSlotPropType)->bool
 				{
-					if (Tmp==ESlotPropType::SLOT_HELMET)
+					for (auto& Tmp:InSlotTable->SlotType)
 					{
-						IsWenpon=true;
+						if (Tmp==InSlotPropType)
+						{
+							return true;
+						};
+					};
+					return false;
+				};
+				
+				auto BindHand = [&](ARoulikeWenpon*& RoulikeWenpon,const FName Socket)
+				{
+					FActorSpawnParameters ActorSpawnParameters;
+					ActorSpawnParameters.Instigator = this;
+					
+					RoulikeWenpon = GetWorld()->SpawnActor<ARoulikeWenpon>(InSlotTable->PropClass,ActorSpawnParameters);
+					RoulikeWenpon->SetPropID(InSlotTable->ID);
+					RoulikeWenpon->SetOwner(this);
+					if (RoulikeWenpon)
+					{
+						RoulikeWenpon->AttachWeapons(GetMesh(),Socket);
 					}
-				}
+				};
 
 				FActorSpawnParameters ActorSpawnParameters;
 				ActorSpawnParameters.Instigator = this;
-				if (InSlotTable->PropClass&&IsWenpon)
+				if (InSlotTable->PropClass&&IsType(ESlotPropType::SLOT_ARMS))
 				{
-					WenponActor = GetWorld()->SpawnActor<ARoulikeWenpon>(InSlotTable->PropClass,ActorSpawnParameters);
-					WenponActor->SetOwner(this);
-					if (WenponActor)
+					if (RightHandWenponActor)
 					{
-						WenponActor->AttachWeapons(GetMesh());
-						WenponActor->RegisterSkillToFightComponent(InSlotTable->ID,TEXT("Character.Attack.NormalAttack"));
-
-						InPlayerState->AddSlotToInventory(InSlotTable->ID);
-
+						TriggerActor->SetPropType(RightHandWenponActor->GetPropID(),RightHandWenponActor->ReWenponMesh()->GetStaticMesh());
+						RightHandWenponActor->Destroy();
+						RightHandWenponActor=nullptr;
+					}else
+					{
 						TriggerActor->Destroy();
+						TriggerActor=nullptr;;
+						
 					}
+
+					if (IsType(ESlotPropType::SLOT_Sing_Hand_ARMS))
+					{
+						BindHand(RightHandWenponActor,TEXT("RhandSocket"));
+						if (LeftHandWenponActor)
+						{
+							LeftHandWenponActor->Destroy();
+						}
+					}else if(IsType(ESlotPropType::SLOT_Both_Hand_ARMS))
+					{
+						BindHand(RightHandWenponActor,TEXT("RhandSocket"));
+						BindHand(LeftHandWenponActor,TEXT("LhandSocket"));
+					}
+					
+					RightHandWenponActor->RegisterSkillToFightComponent(InSlotTable->ID,TEXT("Character.Attack.NormalAttack"));
+					InPlayerState->AddSlotToInventory(InSlotTable->ID);
 				}
 			}
 		}
-	}
-}
-
-void ARouLikeCharacter::ReplaceWenpon()
-{
-	
-}
-
-void ARouLikeCharacter::PickUp_Implementation()
-{
-	if (!WenponActor)
-	{
-		AddWenpon();
 	}else
 	{
-		ReplaceWenpon();
+		if (RightHandWenponActor)
+		{
+			FActorSpawnParameters ActorSpawnParameters;
+			ActorSpawnParameters.Instigator = this;
+			TriggerActor = GetWorld()->SpawnActor<ATriggerActor>(GetActorLocation(),GetActorRotation(),ActorSpawnParameters);
+
+			TriggerActor->SetPropType(RightHandWenponActor->GetPropID(),RightHandWenponActor->ReWenponMesh()->GetStaticMesh());
+			
+			GetFightComponent()->RouLikeGameplayAbility(TEXT("Character.Attack.NormalAttack"));
+
+			RightHandWenponActor->Destroy();
+			RightHandWenponActor=nullptr;
+
+		}
+		if (LeftHandWenponActor)
+		{
+			LeftHandWenponActor->Destroy();
+			LeftHandWenponActor=nullptr;
+		}
 	}
 };
 

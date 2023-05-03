@@ -21,10 +21,15 @@ public:
 
 	virtual void BeginPlay() override;
 
+	void SetPropID(uint32 InPropID){PropID = InPropID;}
+	uint32 GetPropID(){return PropID;};
 protected:
 	UPROPERTY(BlueprintReadWrite,VisibleAnywhere)
 	USceneComponent* SceneRoot;
 	
 	UPROPERTY(BlueprintReadWrite,VisibleAnywhere)
 	UStaticMeshComponent* ProMeshComponent;
+
+	UPROPERTY()
+	uint32 PropID;
 };

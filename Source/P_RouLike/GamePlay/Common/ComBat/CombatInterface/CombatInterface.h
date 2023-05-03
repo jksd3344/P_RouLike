@@ -3,6 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "P_RouLike/GamePlay/Game/SkillGAS/RouLikeAbilitySystemComponent.h"
+#include "P_RouLike/GamePlay/Game/SkillGAS/RouLikeAttributeSet.h"
 #include "UObject/Interface.h"
 #include "CombatInterface.generated.h"
 
@@ -25,6 +27,6 @@ public:
 	virtual void AnimSignal(int32 InSignal) {}
 	virtual void CombatReset(){}
 	virtual void ComboAttack(const FName &InKey) {}
-
 	virtual struct FRouLikeCombat* GetCombatInfo() { return NULL; }
+
 };

@@ -30,11 +30,11 @@ void ARouLikeBoxHit::HandleDamage(UPrimitiveComponent* OverlappedComponent, AAct
 
 						//参数相关
 						FGameplayEventData EventData;
-						EventData.Instigator = GetInstigator();
+						EventData.Instigator = InOwer;
 						EventData.Target = InTarget;
 
 						static const FName Player_State_Hit_Box_Name(TEXT("Character.State.Hit"));
-						UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(GetInstigator(), FGameplayTag::RequestGameplayTag(Player_State_Hit_Box_Name), EventData);
+						UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(InOwer, FGameplayTag::RequestGameplayTag(Player_State_Hit_Box_Name), EventData);
 						
 					}
 				}

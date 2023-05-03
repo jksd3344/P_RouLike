@@ -29,7 +29,7 @@ public:
 	FGameplayAttributeData Health;
 	PROPERTY_FUNCTION_REGISTRATION(URouLikeAttributeSet,Health)
 
-	UPROPERTY(BlueprintReadOnly, Category = "Health", ReplicatedUsing = OnRep_MaxHealth)
+	UPROPERTY(BlueprintReadOnly, Category = "MaxHealth", ReplicatedUsing = OnRep_MaxHealth)
 	FGameplayAttributeData MaxHealth;
 	PROPERTY_FUNCTION_REGISTRATION(URouLikeAttributeSet,MaxHealth)
 	

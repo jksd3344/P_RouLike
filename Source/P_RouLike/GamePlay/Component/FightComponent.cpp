@@ -132,16 +132,44 @@ void UFightComponent::HandleHealth(ARouLikeCharacterBase* InstigatorPawn, AActor
 	{
 		if (RouLikeCharacterBase->IsDie())
 		{
+			InstigatorPawn->RewardEffect(InstigatorPawn->GetCharacterLevel(),InstigatorPawn->GetDeathRewardEffect(), [&]()
+			{
+				UpdateLevel(InstigatorPawn);
+			});
+
+			
 			RouLikeCharacterBase->PlayDie();
 		}else
 		{
-			if (RouLikeCharacterBase->GetHitID()!=INDEX_NONE)
+			if (InstigatorPawn)
 			{
-				/*ÊÜ»÷*/
-				RouLikeCharacterBase->PlayHit();
+				if (RouLikeCharacterBase->GetHitID()!=INDEX_NONE)
+				{
+					/*×ªÏò¹¥»÷Õß*/
+					FRotator Target = (-InstigatorPawn->GetActorForwardVector()).ToOrientationRotator();
+					RouLikeCharacterBase->SetActorRotation(Target);
+					
+					/*ÊÜ»÷*/
+					RouLikeCharacterBase->PlayHit();
+				}
 			}
 		}
 	}
+}
+
+void UFightComponent::RewardEffect(float InNewLevel, TSubclassOf<UGameplayEffect> InNewReward, TFunction<void()> InFun)
+{
+	if (AbilitySystemComponent.IsValid())
+	{
+		/*ËÀÍö½±Àøºó³¢ÊÔÉý¼¶*/
+		AbilitySystemComponent->ApplyGameplayEffectToSelf(Cast<UGameplayEffect>(InNewReward->GetDefaultObject()),InNewLevel,AbilitySystemComponent->MakeEffectContext());
+		InFun();
+	}
+}
+
+void UFightComponent::UpdateLevel(ARouLikeCharacterBase* InUpdateLevelPawn)
+{
+	
 }
 
 void UFightComponent::Press()

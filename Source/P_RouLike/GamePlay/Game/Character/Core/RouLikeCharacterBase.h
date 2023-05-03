@@ -12,6 +12,7 @@
 #include "P_RouLike/GamePlay/Game/SkillGAS/RouLikeAttributeSet.h"
 #include "RouLikeCharacterBase.generated.h"
 
+class URouLikeWenponAttributeSet;
 UCLASS(Blueprintable)
 class ARouLikeCharacterBase : public ACharacter,public ICombatInterface
 {
@@ -64,9 +65,22 @@ public:
 	UWidget* GetWidget();
 	void IsHideWidget(bool IsHide);
 
+	/*奖励升级*/
+	virtual void RewardEffect(float InNewLevel, TSubclassOf<UGameplayEffect> InNewReward,TFunction<void()> InFun);
+	
 	FORCEINLINE UFightComponent* GetFightComponent() { return FightComponents; }
-protected:
 
+	virtual float GetCharacterLevel();
+
+	FORCEINLINE TSubclassOf<UGameplayEffect> GetDeathRewardEffect() { return DeathRewardEffect; }
+
+	/*是否可以升级*/
+	virtual bool IsUpdateLevel();
+protected:
+	//升级
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "MMOARPG|Effect")
+	TSubclassOf<UGameplayEffect> DeathRewardEffect;
+	
 	/*攻击组件*/
 	UPROPERTY(Category=RouLikeComponent,BlueprintReadOnly,VisibleAnywhere)
 	TObjectPtr<UFightComponent>  FightComponents;
@@ -79,6 +93,10 @@ protected:
 	UPROPERTY(Category = MMOARPGCharacterBase, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<URouLikeAttributeSet> AttributeSet;
 
+	/*GAS 角色属性组件*/
+	UPROPERTY(Category = MMOARPGCharacterBase, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<URouLikeWenponAttributeSet> LvAttributeSet;
+	
 	/*血条组件*/
 	UPROPERTY(Category = MMOARPGCharacterBase, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UWidgetComponent> Widget;

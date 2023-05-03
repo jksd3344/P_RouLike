@@ -3,6 +3,7 @@
 #include "RouLikeCharacterBase.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "P_RouLike/GamePlay/Game/Character/RouLikeCharacter.h"
+#include "P_RouLike/GamePlay/Game/SkillGAS/RouLikeWenponAttributeSet.h"
 #include "P_RouLike/UI/Game/Character/UI_CharacterBarWidget.h"
 
 
@@ -21,6 +22,7 @@ ARouLikeCharacterBase::ARouLikeCharacterBase()
 	Widget->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	
 	
+	LvAttributeSet = CreateDefaultSubobject<URouLikeWenponAttributeSet>(TEXT("LvAttributeSet"));
 	AttributeSet = CreateDefaultSubobject<URouLikeAttributeSet>(TEXT("AttributeSet"));
 }
 
@@ -126,6 +128,27 @@ void ARouLikeCharacterBase::IsHideWidget(bool IsHide)
 
 	}
 }
+
+void ARouLikeCharacterBase::RewardEffect(float InNewLevel, TSubclassOf<UGameplayEffect> InNewReward,
+	TFunction<void()> InFun)
+{
+	GetFightComponent()->RewardEffect(InNewLevel,InNewReward,InFun);
+}
+
+float ARouLikeCharacterBase::GetCharacterLevel()
+{
+	return LvAttributeSet->GetLv();
+}
+
+bool ARouLikeCharacterBase::IsUpdateLevel()
+{
+	if (LvAttributeSet)
+	{
+		return LvAttributeSet->GetExperience()>=LvAttributeSet->GetMaxExperience();
+	}
+	return false;
+}
+
 
 void ARouLikeCharacterBase::UpdateCharacterAttribute_Implementation(const FCharacterAttributeTable& CharacterAttributeTable)
 {

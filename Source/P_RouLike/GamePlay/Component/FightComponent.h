@@ -52,6 +52,11 @@ public:
 	void Die();
 	
 	virtual void HandleHealth(ARouLikeCharacterBase* InstigatorPawn,AActor* DamageCauser, const struct FGameplayTagContainer& InTags,float InNewValue, bool bPlayHit = true);
+
+	virtual void RewardEffect(float InNewLevel, TSubclassOf<UGameplayEffect> InNewReward, TFunction<void()> InFun);
+
+	/*Éý¼¶*/
+	void UpdateLevel(ARouLikeCharacterBase* InUpdateLevelPawn);
 public:
 	UPROPERTY()
 	int32 HitID;

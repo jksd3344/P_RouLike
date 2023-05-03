@@ -19,6 +19,8 @@ enum class ESlotPropType :uint8
 	SLOT_HALO           UMETA(DisplayName = "HALO"),	   /*光环*/
 	SLOT_SACREDOBJ      UMETA(DisplayName = "SACREDOBJ"),  /*神器*/
 
+	SLOT_Sing_Hand_ARMS           UMETA(DisplayName = "Sing_Hand"),       /*单手武器*/	
+	SLOT_Both_Hand_ARMS           UMETA(DisplayName = "Both_Hand"),       /*双手武器*/	
 };
 
 

@@ -3,6 +3,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "P_RouLike/GamePlay/Game/Character/RouLikeCharacter.h"
 #include "P_RouLike/GamePlay/Game/GameWorld/P_RouLikeHUD.h"
+#include "P_RouLike/GamePlay/Game/GameWorld/P_RouLikePlayerController.h"
 
 ATriggerActor::ATriggerActor()
 {
@@ -11,9 +12,12 @@ ATriggerActor::ATriggerActor()
 	
 	WenponMeshComponent=CreateDefaultSubobject<UStaticMeshComponent>(TEXT("WenponMeshComponent"));
 	WenponMeshComponent->SetupAttachment(SceneRoot);
-
+	WenponMeshComponent->SetCollisionProfileName(TEXT("OverlapAll"));
+	
 	TouchBoxs=CreateDefaultSubobject<USphereComponent>(TEXT("TouchBoxs"));
 	TouchBoxs->SetupAttachment(SceneRoot);
+	TouchBoxs->SetHiddenInGame(false);
+	TouchBoxs->SetSphereRadius(170);
 	TouchBoxs->OnComponentBeginOverlap.AddDynamic(this,&ATriggerActor::BeginIsCanPickUp);
 	TouchBoxs->OnComponentEndOverlap.AddDynamic(this,&ATriggerActor::EndIsCanPickUp);
 	
@@ -33,15 +37,13 @@ void ATriggerActor::BeginIsCanPickUp(UPrimitiveComponent* OverlappedComponent, A
 		{
 			if (GetLocalRole()==ROLE_Authority)
 			{
-				SetOwner(InTargetActor);
+				SetOwner(InTargetActor->GetController());
 				InTargetActor->SetTargetProp(this);
 			}
 			
-			if (AP_RouLikeHUD* RouLikeHUD =  Cast<AP_RouLikeHUD>(GetWorld()->GetFirstPlayerController()->GetHUD()))
+			if (AP_RouLikePlayerController* PlayerController =  Cast<AP_RouLikePlayerController>(InTargetActor->GetController()))
 			{
-				
-				
-				RouLikeHUD->GetMainScreen()->SetPickButtonVisiable(false);
+				PlayerController->PickUpPropClueForWidet(false);
 			}
 		}
 	}
@@ -57,11 +59,11 @@ void ATriggerActor::EndIsCanPickUp(UPrimitiveComponent* OverlapedComponent, AAct
 			{
 				InTargetActor->SetTargetProp(nullptr);
 			}
-			
-			if (AP_RouLikeHUD* RouLikeHUD =  Cast<AP_RouLikeHUD>(GetWorld()->GetFirstPlayerController()->GetHUD()))
+			if (AP_RouLikePlayerController* PlayerController =  Cast<AP_RouLikePlayerController>(InTargetActor->GetController()))
 			{
-				RouLikeHUD->GetMainScreen()->SetPickButtonVisiable(true);
+				PlayerController->PickUpPropClueForWidet(true);
 			}
+		
 		}
 	}
 }
@@ -73,8 +75,9 @@ void ATriggerActor::BeginPlay()
 	Super::BeginPlay();
 }
 
-void ATriggerActor::ChangeTriggerActorComponent(int32 InPropID, UStaticMesh* InMeshComp)
+void ATriggerActor::SetPropType_Implementation(int32 InPropID, UStaticMesh* InMeshComp)
 {
 	PropID = InPropID;
 	WenponMeshComponent->SetStaticMesh(InMeshComp);
 }
+
