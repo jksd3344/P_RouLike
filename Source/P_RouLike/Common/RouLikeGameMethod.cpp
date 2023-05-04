@@ -1,14 +1,39 @@
 #include "RouLikeGameMethod.h"
 
+#include "EngineUtils.h"
+
 namespace RouLikeGameMethod
 {
 	
 
-	ARouLikeCharacterBase* FindTarget(ARouLikeCharacterBase* InThis,const TArray<ECharacterType>& InIgnoreType, float InRange)
+	ARouLikeCharacterBase* FindTarget(ARouLikeCharacterBase* InThis,float InRange,const TArray<ECharacterType>&InIgnoreType)
 	{
-		ARouLikeCharacterBase*Target = NULL;
 
-		
+		ARouLikeCharacterBase* Target = NULL;
+		if (InThis && !InThis->IsDie() && InThis->GetWorld())
+		{
+			float TmpDistance = InRange;
+			for (TActorIterator<ARouLikeCharacterBase> It(InThis->GetWorld(), ARouLikeCharacterBase::StaticClass()); It; ++It)
+			{
+				if (ARouLikeCharacterBase* NewTarget = *It)
+				{
+					if (!NewTarget->IsDie() && InThis != NewTarget)
+					{
+						float Distance = FVector::Dist(InThis->GetActorLocation(), NewTarget->GetActorLocation());
+					
+						if (Distance <= InRange)
+						{
+							if (Distance <= TmpDistance)
+							{
+								TmpDistance = Distance;
+								Target = NewTarget;
+							}
+						}
+					}
+				}
+			}
+		}
+
 		return Target;
 	}
 

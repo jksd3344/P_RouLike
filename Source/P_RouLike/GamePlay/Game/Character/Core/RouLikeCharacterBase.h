@@ -76,6 +76,8 @@ public:
 
 	/*是否可以升级*/
 	virtual bool IsUpdateLevel();
+
+
 protected:
 	//升级
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "MMOARPG|Effect")

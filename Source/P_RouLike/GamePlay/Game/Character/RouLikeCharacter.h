@@ -30,6 +30,7 @@ public:
 	UFUNCTION(Server, Reliable)
 	void SetTargetProp(ATriggerActor* InTargetProp);
 
+	virtual AActor* GetTarget()override;
 private:
 	UFUNCTION()
 	void MoveForward(float Value);

@@ -66,6 +66,16 @@ void ARouLikeCharacter::SetTargetProp_Implementation(ATriggerActor* InTargetProp
 }
 
 
+AActor* ARouLikeCharacter::GetTarget()
+{
+	if (AP_RouLikePlayerController* InPlayerController = Cast<AP_RouLikePlayerController>(GetController()))
+	{
+		return InPlayerController->GetTarget();
+	}
+
+	return NULL;
+}
+
 void ARouLikeCharacter::MoveForward(float Value)
 {
 	// find out which way is forward

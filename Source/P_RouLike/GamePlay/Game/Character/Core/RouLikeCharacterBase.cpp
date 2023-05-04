@@ -3,6 +3,7 @@
 #include "RouLikeCharacterBase.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "P_RouLike/GamePlay/Game/Character/RouLikeCharacter.h"
+#include "P_RouLike/GamePlay/Game/GameWorld/P_RouLikePlayerController.h"
 #include "P_RouLike/GamePlay/Game/SkillGAS/RouLikeWenponAttributeSet.h"
 #include "P_RouLike/UI/Game/Character/UI_CharacterBarWidget.h"
 

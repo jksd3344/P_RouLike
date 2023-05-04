@@ -28,5 +28,5 @@ public:
 	virtual void CombatReset(){}
 	virtual void ComboAttack(const FName &InKey) {}
 	virtual struct FRouLikeCombat* GetCombatInfo() { return NULL; }
-
+	virtual AActor* GetTarget() { return NULL; }
 };
