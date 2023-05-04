@@ -5,10 +5,9 @@
 #include "CoreMinimal.h"
 #include "RouLikeType.h"
 
-class ARouLikeCharacterBase;
 namespace RouLikeGameMethod
 {
-	ARouLikeCharacterBase *FindTarget(ARouLikeCharacterBase* InMyPawn,float InRange=500.f,const TArray<ECharacterType>&InIgnoreType = TArray<ECharacterType>());
+	ARouLikeCharacterBase *FindTarget(ARouLikeCharacterBase* InThis,const TArray<ECharacterType>&InIgnoreType,float InRange=500.f);
 
 	ECharacterType GetCharacterType(int32 InCharacterID);
 }

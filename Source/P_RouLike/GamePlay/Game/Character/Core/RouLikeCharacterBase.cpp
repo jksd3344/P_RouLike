@@ -2,9 +2,7 @@
 
 #include "RouLikeCharacterBase.h"
 #include "GameFramework/CharacterMovementComponent.h"
-#include "P_RouLike/Common/RouLikeGameMethod.h"
 #include "P_RouLike/GamePlay/Game/Character/RouLikeCharacter.h"
-#include "P_RouLike/GamePlay/Game/GameWorld/P_RouLikePlayerController.h"
 #include "P_RouLike/GamePlay/Game/SkillGAS/RouLikeWenponAttributeSet.h"
 #include "P_RouLike/UI/Game/Character/UI_CharacterBarWidget.h"
 
@@ -149,20 +147,6 @@ bool ARouLikeCharacterBase::IsUpdateLevel()
 		return LvAttributeSet->GetExperience()>=LvAttributeSet->GetMaxExperience();
 	}
 	return false;
-}
-
-ECharacterType ARouLikeCharacterBase::GetCharacterType()
-{
-	return RouLikeGameMethod::GetCharacterType(GetID());
-}
-
-AActor* ARouLikeCharacterBase::GetTarget()
-{
-	if (AP_RouLikePlayerController* InPlayController = Cast<AP_RouLikePlayerController>(GetController()))
-	{
-		return InPlayController->GetTarget();
-	}
-	return NULL;
 }
 
 

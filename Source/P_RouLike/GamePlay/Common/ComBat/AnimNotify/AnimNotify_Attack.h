@@ -16,7 +16,7 @@ class P_ROULIKE_API UAnimNotify_Attack : public UAnimNotify
 public:
 	UAnimNotify_Attack();
 	
-	virtual void Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, const FAnimNotifyEventReference& EventReference) override;
+	virtual void Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation) override;
 	
 	virtual FString GetNotifyName_Implementation() const override;
 

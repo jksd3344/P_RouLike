@@ -1,53 +1,13 @@
 #include "RouLikeGameMethod.h"
 
-#include "EngineUtils.h"
-#include "P_RouLike/GamePlay/Game/Character/Core/RouLikeCharacterBase.h"
-
 namespace RouLikeGameMethod
 {
 	
 
-	ARouLikeCharacterBase* FindTarget(ARouLikeCharacterBase* InMyPawn,float InRange,const TArray<ECharacterType>&InIgnoreType)
+	ARouLikeCharacterBase* FindTarget(ARouLikeCharacterBase* InThis,const TArray<ECharacterType>& InIgnoreType, float InRange)
 	{
-		auto IsExistIgnoreType = [&](ARouLikeCharacterBase* InNewTarget)->bool
-		{
-			for (auto &Tmp : InIgnoreType)
-			{
-				if (InNewTarget->GetCharacterType() == Tmp)
-				{
-					return true;
-				}
-			}
-
-			return false;
-		};
-		
 		ARouLikeCharacterBase*Target = NULL;
 
-		if (InMyPawn && !InMyPawn->IsDie()&&InMyPawn->GetWorld())
-		{
-			float TmpDistance = InRange;
-			for (TActorIterator<ARouLikeCharacterBase> It(InMyPawn->GetWorld(),ARouLikeCharacterBase::StaticClass());It;++It)
-			{
-				if (ARouLikeCharacterBase* NewTarget = *It)
-				{
-					if (!NewTarget->IsDie()&&NewTarget!=InMyPawn&& !IsExistIgnoreType(NewTarget))
-					{
-						float Distanct = FVector::Dist(InMyPawn->GetActorLocation(),NewTarget->GetActorLocation());
-						/*这里寻找离我最近的角色*/
-						if (Distanct<=InRange)
-						{
-							if (Distanct<=TmpDistance)
-							{
-								TmpDistance=Distanct;
-								Target=NewTarget;
-							}
-						}
-					}
-				}
-			}
-		}
-		
 		
 		return Target;
 	}

@@ -7,9 +7,9 @@ UAnimNotify_CombatReset::UAnimNotify_CombatReset()
 	
 }
 
-void UAnimNotify_CombatReset::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, const FAnimNotifyEventReference& EventReference)
+void UAnimNotify_CombatReset::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation)
 {
-	Super::Notify(MeshComp, Animation,EventReference);
+	Super::Notify(MeshComp, Animation);
 	//如果动画在这里之前切换就运行不到这里，就不会触发
 	if (ICombatInterface* InSimpleCombatInterface=Cast<ICombatInterface>(MeshComp->GetOuter()))
 	{

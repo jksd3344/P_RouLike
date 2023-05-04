@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "P_RouLike/DataTable/RouLikeTableBase.h"
+#include "P_RouLike/GamePlay/Game/Character/Core/RouLikeCharacterBase.h"
 #include "RouLikeType.generated.h"
 
 enum class ECharacterType: uint8

@@ -1,5 +1,4 @@
 #include "RouLikeType.h"
-#include "P_RouLike/DataTable/RouLikeTableBase.h"
 
 FRouLikeAttributeData::FRouLikeAttributeData()
 	:BaseValue(0.f),CurrentValue(0.f)
