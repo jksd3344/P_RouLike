@@ -2,7 +2,6 @@
 
 #include "P_RouLikePlayerController.h"
 #include "P_RouLikeHUD.h"
-#include "P_RouLikePlayerState.h"
 #include "P_RouLike/Common/RouLikeGameMethod.h"
 #include "P_RouLike/GamePlay/Wenpon/RoulikeWenpon.h"
 #include "P_RouLike/GamePlay/Wenpon/TriggerActor.h"
@@ -46,7 +45,6 @@ void AP_RouLikePlayerController::Tick(float DeltaSeconds)
 			}
 		}
 	}
-	
 }
 
 void AP_RouLikePlayerController::ResetTargetOnServer_Implementation(ARouLikeCharacterBase* InNewTarget)
