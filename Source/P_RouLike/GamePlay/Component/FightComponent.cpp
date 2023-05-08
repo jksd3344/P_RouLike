@@ -96,7 +96,7 @@ void UFightComponent::RegisterComboAttack(FRouLikeCombat& InComboAttack, const F
 	}
 	else
 	{
-		InComboAttack.MaxIndex = 4;
+		InComboAttack.MaxIndex = 3;
 	}
 }
 

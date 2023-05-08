@@ -18,7 +18,6 @@ void UAnimNotify_FaceTarget::Notify(USkeletalMeshComponent* MeshComp, UAnimSeque
 			{
 				FRotator FaceRot = FRotationMatrix::MakeFromX(InTarget->GetActorLocation() - InThis->GetActorLocation()).Rotator();
 				
-				
 				InThis->SetActorRotation(FaceRot);
 			}
 		}
