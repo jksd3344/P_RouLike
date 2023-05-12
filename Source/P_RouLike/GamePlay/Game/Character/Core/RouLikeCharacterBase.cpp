@@ -126,7 +126,6 @@ void ARouLikeCharacterBase::IsHideWidget(bool IsHide)
 		{
 			InWidget->SetVisibility(ESlateVisibility::Visible);
 		}
-
 	}
 }
 
