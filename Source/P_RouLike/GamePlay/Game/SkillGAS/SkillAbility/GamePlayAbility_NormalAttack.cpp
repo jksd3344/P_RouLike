@@ -14,12 +14,20 @@ void UGamePlayAbility_NormalAttack::ActivateAbility(
 	{
 		return;
 	}
-
 	if (ARouLikeCharacterBase* InCharacterBase = Cast<ARouLikeCharacterBase>(ActorInfo->OwnerActor))
 	{
-		if (PlayMontage(*FString::FromInt(InCharacterBase->GetCombatInfo()->CombatIndex)))
+		if (InCharacterBase->GetWorld()->IsServer())
 		{
-		
+			if (PlayMontage(*FString::FromInt(InCharacterBase->GetCombatInfo()->CombatIndex)))
+			{
+			
+			}
+		}else
+		{
+			if (PlayMontage(*FString::FromInt(InCharacterBase->GetCombatInfo()->CombatIndex+1)))
+			{
+			
+			}
 		}
 	}
 }
