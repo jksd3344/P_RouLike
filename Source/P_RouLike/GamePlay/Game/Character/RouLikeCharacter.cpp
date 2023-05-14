@@ -48,8 +48,8 @@ ARouLikeCharacter::ARouLikeCharacter()
 void ARouLikeCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-	PlayerInputComponent->BindAxis("MoveForward", this, &ARouLikeCharacter::MoveForward);
-	PlayerInputComponent->BindAxis("MoveRight", this, &ARouLikeCharacter::MoveRight);
+	/*PlayerInputComponent->BindAxis("MoveForward", this, &ARouLikeCharacter::MoveForward);
+	PlayerInputComponent->BindAxis("MoveRight", this, &ARouLikeCharacter::MoveRight);*/
 	PlayerInputComponent->BindAction("MouseLeft",IE_Pressed, this,  &ARouLikeCharacter::MouseLeftPress);
 	PlayerInputComponent->BindAction("MouseLeft",IE_Released, this,  &ARouLikeCharacter::MouseLeftReleased);
 	PlayerInputComponent->BindAction("PickUp",IE_Pressed, this,  &ARouLikeCharacter::PickUp);

@@ -3,7 +3,6 @@
 #include "RouLikeCharacterBase.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "P_RouLike/GamePlay/Game/Character/RouLikeCharacter.h"
-#include "P_RouLike/GamePlay/Game/GameWorld/P_RouLikePlayerController.h"
 #include "P_RouLike/GamePlay/Game/SkillGAS/RouLikeWenponAttributeSet.h"
 #include "P_RouLike/UI/Game/Character/UI_CharacterBarWidget.h"
 
@@ -18,6 +17,19 @@ ARouLikeCharacterBase::ARouLikeCharacterBase()
 	AbilitySystemComponent = CreateDefaultSubobject<URouLikeAbilitySystemComponent>(TEXT("AbilitySystemComponent"));
 	AbilitySystemComponent->SetIsReplicated(true);
 
+	TrajectoryGeneratorComponent = CreateDefaultSubobject<UTrajectoryGenerator>(TEXT("TrajectoryGeneratorComponent"));
+	TrajectoryGeneratorComponent->SetIsReplicated(true);
+
+	TrajectoryErrorWarpingComponent = CreateDefaultSubobject<UTrajectoryErrorWarping>(TEXT("TrajectoryErrorWarpingComponent"));
+	TrajectoryErrorWarpingComponent->SetIsReplicated(true);
+
+	DistanceMatching = CreateDefaultSubobject<UDistanceMatching>(TEXT("DistanceMatching"));
+	DistanceMatching->SetIsReplicated(true);
+
+	MotionComponent = CreateDefaultSubobject<UMotionAnimComponent>(TEXT("MotionComponent"));
+	MotionComponent->SetIsReplicated(true);
+
+
 	Widget = CreateDefaultSubobject<UWidgetComponent>(TEXT("Widget"));
 	Widget->SetupAttachment(RootComponent);
 	Widget->SetCollisionEnabled(ECollisionEnabled::NoCollision);
@@ -25,6 +37,7 @@ ARouLikeCharacterBase::ARouLikeCharacterBase()
 	
 	LvAttributeSet = CreateDefaultSubobject<URouLikeWenponAttributeSet>(TEXT("LvAttributeSet"));
 	AttributeSet = CreateDefaultSubobject<URouLikeAttributeSet>(TEXT("AttributeSet"));
+
 }
 
 void ARouLikeCharacterBase::Tick(float DeltaSeconds)
