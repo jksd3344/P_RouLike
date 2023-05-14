@@ -32,10 +32,10 @@ public:
 
 	virtual AActor* GetTarget()override;
 private:
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void MoveForward(float Value);
 	
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void MoveRight(float Value);
 	
 	UFUNCTION(Server, Reliable)

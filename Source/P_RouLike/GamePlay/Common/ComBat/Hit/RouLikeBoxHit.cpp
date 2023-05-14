@@ -34,6 +34,7 @@ void ARouLikeBoxHit::HandleDamage(UPrimitiveComponent* OverlappedComponent, AAct
 						EventData.Target = InTarget;
 
 						static const FName Player_State_Hit_Box_Name(TEXT("Character.State.Hit"));
+						GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Successed Produce NPC")));
 						UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(InOwer, FGameplayTag::RequestGameplayTag(Player_State_Hit_Box_Name), EventData);
 						
 					}

@@ -3,11 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "../../../../../../Plugins/MotionSymphony/Source/MotionSymphony/Public/Components/TrajectoryErrorWarping.h"
+#include "../../../../../../Plugins/MotionSymphony/Source/MotionSymphony/Public/Components/TrajectoryGenerator.h"
+#include "Components/DistanceMatching.h"
 #include "Components/WidgetComponent.h"
 #include "GameFramework/Character.h"
 #include "P_RouLike/DataTable/CharacterAttributeTable.h"
 #include "P_RouLike/GamePlay/Common/ComBat/CombatInterface/CombatInterface.h"
 #include "P_RouLike/GamePlay/Component/FightComponent.h"
+#include "P_RouLike/GamePlay/Component/MotionAnimComponent.h"
 #include "P_RouLike/GamePlay/Game/SkillGAS/RouLikeAbilitySystemComponent.h"
 #include "P_RouLike/GamePlay/Game/SkillGAS/RouLikeAttributeSet.h"
 #include "RouLikeCharacterBase.generated.h"
@@ -77,7 +81,17 @@ public:
 	/*是否可以升级*/
 	virtual bool IsUpdateLevel();
 
+	UFUNCTION()
+	UTrajectoryGenerator* GetTrajectoryGeneratorComponent(){return TrajectoryGeneratorComponent.Get();}
 
+	UFUNCTION()
+	UTrajectoryErrorWarping* GetTrajectoryErrorWarpingComponent(){return TrajectoryErrorWarpingComponent.Get();}
+
+	UFUNCTION()
+	UDistanceMatching* GetDistanceMatching(){return DistanceMatching.Get();}
+
+	UFUNCTION()
+	UMotionAnimComponent* GetMotionComponent(){return MotionComponent.Get();}
 protected:
 	//升级
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "MMOARPG|Effect")
@@ -103,6 +117,22 @@ protected:
 	UPROPERTY(Category = MMOARPGCharacterBase, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UWidgetComponent> Widget;
 
+	/*GAS技能组件*/
+	UPROPERTY(Category=MMOARPGCharacterBase,BlueprintReadOnly,VisibleAnywhere)
+	TObjectPtr<UTrajectoryGenerator>  TrajectoryGeneratorComponent;
+
+	/*GAS技能组件*/
+	UPROPERTY(Category=MMOARPGCharacterBase,BlueprintReadOnly,VisibleAnywhere)
+	TObjectPtr<UTrajectoryErrorWarping> TrajectoryErrorWarpingComponent;
+
+	/*GAS技能组件*/
+	UPROPERTY(Category=MMOARPGCharacterBase,BlueprintReadOnly,VisibleAnywhere)
+	TObjectPtr<UMotionAnimComponent> MotionComponent;
+
+	/*GAS技能组件*/
+	UPROPERTY(Category=MMOARPGCharacterBase,BlueprintReadOnly,VisibleAnywhere)
+	TObjectPtr<UDistanceMatching> DistanceMatching;
+	
 	/*CharacterID 为了从表中查出自己的技能或其他信息*/
 	UPROPERTY(EditDefaultsOnly,Category="Cahracter")
 	int32 ID;
