@@ -31,12 +31,21 @@ public:
 	void SetTargetProp(ATriggerActor* InTargetProp);
 
 	virtual AActor* GetTarget()override;
+
+	UFUNCTION(BlueprintCallable)
+	bool IsFocus(){return bFocus;};
 private:
 	UFUNCTION(BlueprintCallable)
 	void MoveForward(float Value);
 	
 	UFUNCTION(BlueprintCallable)
 	void MoveRight(float Value);
+
+	UFUNCTION(BlueprintCallable)
+	void Focus();
+	
+	UFUNCTION(BlueprintCallable)
+	void UnFocus();
 	
 	UFUNCTION(Server, Reliable)
 	void MouseLeftPress();
@@ -47,7 +56,6 @@ private:
 	UFUNCTION(Server,Reliable)
 	void PickUp();
 
-
 private:
 	UPROPERTY()
 	ATriggerActor* TriggerActor;
@@ -57,7 +65,11 @@ private:
 
 	UPROPERTY()
 	ARoulikeWenpon* LeftHandWenponActor;
+
+	UPROPERTY()
+	bool bFocus;
 };
+
 
 
 

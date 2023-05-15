@@ -62,7 +62,4 @@ FString UAnimNotify_Attack::GetNotifyName_Implementation() const
 }
 
 
-FLinearColor UAnimNotify_Attack::GetEditorColor()
-{
-	return FLinearColor::Red;
-}
+

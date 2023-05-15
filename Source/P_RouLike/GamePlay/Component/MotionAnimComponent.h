@@ -39,7 +39,19 @@ public:
 	FMotionTraitField MotionTraitField;
 
 	UPROPERTY(BlueprintReadWrite)
-	bool IsSprint; 
+	bool IsSprint;
+
+	UFUNCTION()
+	void SetX(float InX){M_X=InX;}
+	
+	UFUNCTION()
+	void SetY(float InY){M_Y=InY;}
+	
+	UPROPERTY()
+	float M_X;
+	
+	UPROPERTY()
+	float M_Y;
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;

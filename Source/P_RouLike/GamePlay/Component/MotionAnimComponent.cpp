@@ -39,17 +39,12 @@ void UMotionAnimComponent::Server_MotionMove_Implementation(const float X, const
 
 void UMotionAnimComponent::Multicast_MotionMove_Implementation(const float X, const float Y, const FVector Location,float Delta)
 {
-	if (GetRouLikeCharacter()->HasAuthority())
-	{
-		UMMBlueprintFunctionLibrary::GetVectorRelativeToCamera(X,Y,GetRouLikeCharacter()->TopDownCameraComponent);
-		GetRouLikeCharacter()->GetTrajectoryGeneratorComponent()->SetTrajectoryInput(X,Y,0);
-	}else
+	if (!GetRouLikeCharacter()->HasAuthority())
 	{
 		GetRouLikeCharacter()->SetActorLocation(Location);
-		UMMBlueprintFunctionLibrary::GetVectorRelativeToCamera(X,Y,GetRouLikeCharacter()->TopDownCameraComponent);
-		GetRouLikeCharacter()->GetTrajectoryGeneratorComponent()->SetTrajectoryInput(X,Y,0);
 	}
-
+	UMMBlueprintFunctionLibrary::GetVectorRelativeToCamera(X,Y,GetRouLikeCharacter()->TopDownCameraComponent);
+	GetRouLikeCharacter()->GetTrajectoryGeneratorComponent()->SetTrajectoryInput(X,Y,0);
 	GetRouLikeCharacter()->GetTrajectoryErrorWarpingComponent()->ApplyTrajectoryErrorWarping(Delta,1.0f);
 }
 
@@ -71,5 +66,6 @@ void UMotionAnimComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
+	MotionMove(M_X,M_Y);
 }
 

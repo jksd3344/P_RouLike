@@ -92,6 +92,9 @@ public:
 
 	UFUNCTION()
 	UMotionAnimComponent* GetMotionComponent(){return MotionComponent.Get();}
+
+	UFUNCTION(BlueprintCallable,BlueprintPure)
+	float GetCharacterSpeed();
 protected:
 	//升级
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "MMOARPG|Effect")

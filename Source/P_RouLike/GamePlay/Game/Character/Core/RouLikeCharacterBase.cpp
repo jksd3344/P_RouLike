@@ -162,6 +162,11 @@ bool ARouLikeCharacterBase::IsUpdateLevel()
 	return false;
 }
 
+float ARouLikeCharacterBase::GetCharacterSpeed()
+{
+	return GetVelocity().Length();
+}
+
 
 void ARouLikeCharacterBase::UpdateCharacterAttribute_Implementation(const FCharacterAttributeTable& CharacterAttributeTable)
 {

@@ -23,6 +23,8 @@ public:
 	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
 
 	virtual void NativeBeginPlay() override;
+
+
 protected:
 	UPROPERTY(BlueprintReadWrite)
 	UTrajectoryGenerator *TrajectoryGenerator;
@@ -38,4 +40,7 @@ protected:
 
 	UPROPERTY(BlueprintReadWrite)
 	bool IsMoving;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "AnimAttrubute")
+	bool IsFocus=true;
 };

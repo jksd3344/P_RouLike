@@ -48,8 +48,10 @@ ARouLikeCharacter::ARouLikeCharacter()
 void ARouLikeCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-	/*PlayerInputComponent->BindAxis("MoveForward", this, &ARouLikeCharacter::MoveForward);
-	PlayerInputComponent->BindAxis("MoveRight", this, &ARouLikeCharacter::MoveRight);*/
+	PlayerInputComponent->BindAxis("MoveForward", this, &ARouLikeCharacter::MoveForward);
+	PlayerInputComponent->BindAxis("MoveRight", this, &ARouLikeCharacter::MoveRight);
+	PlayerInputComponent->BindAction("Focus",IE_Pressed, this, &ARouLikeCharacter::Focus);
+	PlayerInputComponent->BindAction("Focus",IE_Released, this, &ARouLikeCharacter::UnFocus);
 	PlayerInputComponent->BindAction("MouseLeft",IE_Pressed, this,  &ARouLikeCharacter::MouseLeftPress);
 	PlayerInputComponent->BindAction("MouseLeft",IE_Released, this,  &ARouLikeCharacter::MouseLeftReleased);
 	PlayerInputComponent->BindAction("PickUp",IE_Pressed, this,  &ARouLikeCharacter::PickUp);
@@ -58,6 +60,8 @@ void ARouLikeCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 void ARouLikeCharacter::Tick(float DeltaSeconds)
 {
     Super::Tick(DeltaSeconds);
+
+
 }
 
 void ARouLikeCharacter::SetTargetProp_Implementation(ATriggerActor* InTargetProp)
@@ -78,25 +82,47 @@ AActor* ARouLikeCharacter::GetTarget()
 
 void ARouLikeCharacter::MoveForward(float Value)
 {
-	// find out which way is forward
-	const FRotator Rotation = Controller->GetControlRotation();
-	const FRotator YawRotation(0, Rotation.Yaw, 0);
+	if (bFocus)
+	{
+		// find out which way is forward
+		const FRotator Rotation = Controller->GetControlRotation();
+		const FRotator YawRotation(0, Rotation.Yaw, 0);
 
-	// get forward vector
-	const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-	AddMovementInput(Direction, Value);
+		// get forward vector
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+		AddMovementInput(Direction, Value);
+	}
+
+	bFocus?MotionComponent->SetX(0):MotionComponent->SetX(Value);
+
 };
 
 void ARouLikeCharacter::MoveRight(float Value)
 {
-	// find out which way is right
-	const FRotator Rotation = Controller->GetControlRotation();
-	const FRotator YawRotation(0, Rotation.Yaw, 0);
+	if (bFocus)
+	{
+		// find out which way is right
+		const FRotator Rotation = Controller->GetControlRotation();
+		const FRotator YawRotation(0, Rotation.Yaw, 0);
 	
-	// get right vector 
-	const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-	// add movement in that direction
-	AddMovementInput(Direction, Value);
+		// get right vector 
+		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+		// add movement in that direction
+		AddMovementInput(Direction, Value);
+	}
+
+	bFocus?MotionComponent->SetY(0):MotionComponent->SetY(Value);
+}
+
+void ARouLikeCharacter::UnFocus()
+{
+	bFocus=false;
+}
+
+
+void ARouLikeCharacter::Focus()
+{
+	bFocus=true;
 }
 
 
