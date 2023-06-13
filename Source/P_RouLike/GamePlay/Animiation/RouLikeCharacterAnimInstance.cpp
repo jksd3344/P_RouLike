@@ -14,16 +14,9 @@ ARouLikeCharacter* URouLikeCharacterAnimInstance::GetRouLikeCharacter()
 void URouLikeCharacterAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 {
 	Super::NativeUpdateAnimation(DeltaSeconds);
-	if (GetRouLikeCharacter())
-	{
-		IsFocus = GetRouLikeCharacter()->IsFocus();
-	}
 }
 
 void URouLikeCharacterAnimInstance::NativeBeginPlay()
 {
-	TrajectoryGenerator = GetRouLikeCharacter()->GetTrajectoryGeneratorComponent();
-	DistanceMatching = GetRouLikeCharacter()->GetDistanceMatching();
-	Trajectory = TrajectoryGenerator->Trajectory;
-	Trajectory.Initialize(5);
+
 }

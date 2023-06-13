@@ -18,8 +18,7 @@ public class P_RouLike : ModuleRules
 	        "AIModule",
 	        "GameplayAbilities",
 	        "GameplayTags",
-	        "GameplayTasks",
-	        "MotionSymphony"
+	        "GameplayTasks"
         });
     }
 }

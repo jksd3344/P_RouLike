@@ -35,28 +35,3 @@ void UMotionALSComponent::TickComponent(float DeltaTime, ELevelTick TickType,FAc
 	
 }
 
-void UMotionALSComponent::ALSGetEssentialValue(
-	FVector& Velocity,
-	FVector& Acceleration,
-	FVector& Movement,
-	bool& IsMoving,
-	bool& HasMovementInput,
-	float& Speed,
-	float& MovementInputAmout,
-	FRotator& AimingRotation,
-	float& AimYawRate)
-{
-	IALS_Character_Interface::ALSGetEssentialValue(
-		Velocity,
-		Acceleration,
-		Movement,
-		IsMoving,
-		HasMovementInput,
-		Speed,
-		MovementInputAmout,
-		AimingRotation,
-		AimYawRate);
-
-	Velocity = GetRouLikeCharacter()->GetVelocity();
-
-}

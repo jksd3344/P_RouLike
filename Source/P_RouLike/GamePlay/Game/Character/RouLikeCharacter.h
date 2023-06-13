@@ -32,8 +32,6 @@ public:
 
 	virtual AActor* GetTarget()override;
 
-	UFUNCTION(BlueprintCallable)
-	bool IsFocus(){return bFocus;};
 private:
 	UFUNCTION(BlueprintCallable)
 	void MoveForward(float Value);
@@ -41,12 +39,6 @@ private:
 	UFUNCTION(BlueprintCallable)
 	void MoveRight(float Value);
 
-	UFUNCTION(BlueprintCallable)
-	void Focus();
-	
-	UFUNCTION(BlueprintCallable)
-	void UnFocus();
-	
 	UFUNCTION(Server, Reliable)
 	void MouseLeftPress();
 	
@@ -66,8 +58,6 @@ private:
 	UPROPERTY()
 	ARoulikeWenpon* LeftHandWenponActor;
 
-	UPROPERTY()
-	bool bFocus;
 };
 
 

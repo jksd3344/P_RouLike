@@ -17,19 +17,6 @@ ARouLikeCharacterBase::ARouLikeCharacterBase()
 	AbilitySystemComponent = CreateDefaultSubobject<URouLikeAbilitySystemComponent>(TEXT("AbilitySystemComponent"));
 	AbilitySystemComponent->SetIsReplicated(true);
 
-	TrajectoryGeneratorComponent = CreateDefaultSubobject<UTrajectoryGenerator>(TEXT("TrajectoryGeneratorComponent"));
-	TrajectoryGeneratorComponent->SetIsReplicated(true);
-
-	TrajectoryErrorWarpingComponent = CreateDefaultSubobject<UTrajectoryErrorWarping>(TEXT("TrajectoryErrorWarpingComponent"));
-	TrajectoryErrorWarpingComponent->SetIsReplicated(true);
-
-	DistanceMatching = CreateDefaultSubobject<UDistanceMatching>(TEXT("DistanceMatching"));
-	DistanceMatching->SetIsReplicated(true);
-
-	MotionComponent = CreateDefaultSubobject<UMotionAnimComponent>(TEXT("MotionComponent"));
-	MotionComponent->SetIsReplicated(true);
-
-
 	Widget = CreateDefaultSubobject<UWidgetComponent>(TEXT("Widget"));
 	Widget->SetupAttachment(RootComponent);
 	Widget->SetCollisionEnabled(ECollisionEnabled::NoCollision);

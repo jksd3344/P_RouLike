@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Components/TrajectoryGenerator.h"
 #include "Core/RouLikeAnimInstanceBase.h"
 #include "RouLikeCharacterAnimInstance.generated.h"
 class ARouLikeCharacter;
@@ -26,14 +25,7 @@ public:
 
 
 protected:
-	UPROPERTY(BlueprintReadWrite)
-	UTrajectoryGenerator *TrajectoryGenerator;
 
-	UPROPERTY(BlueprintReadWrite)
-	UDistanceMatching *DistanceMatching;
-
-	UPROPERTY(BlueprintReadWrite)
-	FTrajectory Trajectory;
 
 	UPROPERTY(BlueprintReadWrite)
 	bool HasMoveInput;

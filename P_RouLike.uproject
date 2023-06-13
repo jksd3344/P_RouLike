@@ -21,10 +21,6 @@
 		{
 			"Name": "AnimationWarping",
 			"Enabled": true
-		},
-		{
-			"Name": "MotionSymphony",
-			"Enabled": true
 		}
 	]
 }
