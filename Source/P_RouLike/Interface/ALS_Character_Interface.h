@@ -8,7 +8,7 @@
 #include "ALS_Character_Interface.generated.h"
 
 // This class does not need to be modified.
-UINTERFACE(MinimalAPI, Blueprintable, BlueprintType, meta = (CannotImplementInterfaceInBlueprint))
+UINTERFACE(MinimalAPI, Blueprintable, BlueprintType)
 class UALS_Character_Interface : public UInterface
 {
 	GENERATED_BODY()
@@ -23,7 +23,8 @@ class P_ROULIKE_API IALS_Character_Interface
 
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
-	virtual void ALSGetEssentialValue(
+	UFUNCTION(BlueprintImplementableEvent,BlueprintCallable)
+	void AlsGetEssentialValue(
 		FVector& Velocity,
 		FVector& Acceleration,
 		FVector& Movement,
@@ -33,5 +34,6 @@ public:
 		float &MovementInputAmout,
 		FRotator& AimingRotation,
 		float& AimYawRate
-	){}
+	);
+
 };

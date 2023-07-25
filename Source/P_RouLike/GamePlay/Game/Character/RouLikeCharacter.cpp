@@ -82,7 +82,7 @@ AActor* ARouLikeCharacter::GetTarget()
 
 void ARouLikeCharacter::MoveForward(float Value)
 {
-	if (bFocus)
+	/*if (bFocus)
 	{
 		// find out which way is forward
 		const FRotator Rotation = Controller->GetControlRotation();
@@ -93,13 +93,27 @@ void ARouLikeCharacter::MoveForward(float Value)
 		AddMovementInput(Direction, Value);
 	}
 
-	bFocus?MotionComponent->SetX(0):MotionComponent->SetX(Value);
+	bFocus?MotionComponent->SetX(0):MotionComponent->SetX(Value);*/
+	// find out which way is forward
+	const FRotator Rotation = Controller->GetControlRotation();
+	const FRotator YawRotation(0, Rotation.Yaw, 0);
 
+	// get forward vector
+	const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+	AddMovementInput(Direction, Value);
 };
 
 void ARouLikeCharacter::MoveRight(float Value)
 {
-	if (bFocus)
+	// find out which way is right
+	const FRotator Rotation = Controller->GetControlRotation();
+	const FRotator YawRotation(0, Rotation.Yaw, 0);
+	
+	// get right vector 
+	const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+	// add movement in that direction
+	AddMovementInput(Direction, Value);
+	/*if (bFocus)
 	{
 		// find out which way is right
 		const FRotator Rotation = Controller->GetControlRotation();
@@ -111,7 +125,7 @@ void ARouLikeCharacter::MoveRight(float Value)
 		AddMovementInput(Direction, Value);
 	}
 
-	bFocus?MotionComponent->SetY(0):MotionComponent->SetY(Value);
+	bFocus?MotionComponent->SetY(0):MotionComponent->SetY(Value);*/
 }
 
 void ARouLikeCharacter::UnFocus()

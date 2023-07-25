@@ -10,7 +10,7 @@
 class ARouLikeCharacter;
 
 UCLASS(Blueprintable)
-class P_ROULIKE_API UMotionALSComponent : public UActorComponent,public IALS_Character_Interface
+class P_ROULIKE_API UMotionALSComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
@@ -29,16 +29,6 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	virtual void ALSGetEssentialValue(
-		FVector& Velocity,
-		FVector& Acceleration,
-		FVector& Movement,
-		bool& IsMoving,
-		bool& HasMovementInput,
-		float& Speed,
-		float &MovementInputAmout,
-		FRotator& AimingRotation,
-		float& AimYawRate
-	) override;
+
 	
 };

@@ -32,7 +32,7 @@ public:
 
 	virtual AActor* GetTarget()override;
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable,BlueprintPure)
 	bool IsFocus(){return bFocus;};
 private:
 	UFUNCTION(BlueprintCallable)
